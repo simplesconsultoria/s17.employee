@@ -99,7 +99,6 @@ class EmployeeEditForm(dexterity.EditForm):
                 behavior = self.is_from_person(schema)
                 if self.autoGroups and behavior:
                     group_name = behavior.title
-                    #import pdb;pdb.set_trace()
 
                     # Look for group - note that previous processFields
                     # may have changed the groups list, so we can't easily
