@@ -8,13 +8,6 @@
 
     <five:registerPackage package="." />
     <includeDependencies package="." />
-
-    <!-- Permissions -->
-    <permission
-       id="collective.person.AddPerson"
-       title="collective.person: Add person"
-    />
-
     <grok:grok package="." />
 
     <genericsetup:registerProfile
