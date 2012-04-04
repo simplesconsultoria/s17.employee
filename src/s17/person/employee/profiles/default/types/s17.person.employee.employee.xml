@@ -23,7 +23,7 @@
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
      <element value="plone.app.content.interfaces.INameFromTitle" />
-   </property>
+  </property>
 
   <!-- View information -->
   <property name="link_target"></property>
@@ -47,6 +47,9 @@
   </action>
   <action title="Edit" action_id="employee_edit" category="object" condition_expr=""
     url_expr="string:${object_url}/employee_edit" visible="True">
+    <permission value="Modify portal content" />
+  </action>
+  <action title="Edit" action_id="edit" category="object" visible="False">
     <permission value="Modify portal content" />
   </action>
 </object>
