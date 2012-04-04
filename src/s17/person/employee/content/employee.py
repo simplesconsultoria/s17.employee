@@ -1,18 +1,16 @@
+# -*- coding: utf-8 -*-
+
 from five import grok
 
 from z3c.form import field
 
-from plone.z3cform.fieldsets.group import GroupFactory
-
 from plone.autoform.utils import processFieldMoves, processFields
-
-from plone.directives import dexterity
-
 from plone.behavior.interfaces import IBehaviorAssignable
+from plone.directives import dexterity
+from plone.z3cform.fieldsets.group import GroupFactory
 
 from collective.person.content.person import IPerson
 from collective.person.content.person import Person
-
 
 fields = IPerson.names()
 fields.reverse()
