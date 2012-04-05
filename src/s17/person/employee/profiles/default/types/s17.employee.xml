@@ -18,7 +18,7 @@
   <property name="schema">s17.person.employee.content.employee.IEmployee</property>
   <property name="klass">s17.person.employee.content.employee.Employee</property>
 
-  <property name="add_permission">s17.person.employee.AddPerson</property>
+  <property name="add_permission">s17.person.employee.AddEmployee</property>
 
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />

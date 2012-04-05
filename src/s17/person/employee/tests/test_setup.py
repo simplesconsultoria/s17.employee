@@ -19,7 +19,7 @@ class BaseTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUpUser(self):
-        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer',])
+        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Editor', 'Reviewer'])
         login(self.portal, TEST_USER_NAME)
 
     def setUp(self):
