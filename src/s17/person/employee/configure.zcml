@@ -7,23 +7,17 @@
     i18n_domain="s17.person.employee">
 
     <five:registerPackage package="." />
+
     <includeDependencies package="." />
+
     <grok:grok package="." />
 
-    <genericsetup:registerProfile
-        name="default"
-        title="s17.person.employee: Install"
-        directory="profiles/default"
-        description="Install Employee content type for collective.person"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+    <include file="profiles.zcml"/>
 
-    <genericsetup:registerProfile
-        name="uninstall"
-        title="Uninstall s17.person.employee"
-        directory="profiles/uninstall"
-        description="Uninstall s17.person.employee"
-        provides="Products.GenericSetup.interfaces.EXTENSION"
-        />
+    <!-- Permissions -->
+    <permission
+       id="s17.person.employee.AddPerson"
+       title="s17.person.employee: Add person"
+    />
 
 </configure>

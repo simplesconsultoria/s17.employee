@@ -18,8 +18,7 @@
   <property name="schema">s17.person.employee.content.employee.IEmployee</property>
   <property name="klass">s17.person.employee.content.employee.Employee</property>
 
-  <!-- XXX: we should declare our own permission; aren't we? -->
-  <property name="add_permission">collective.person.AddPerson</property>
+  <property name="add_permission">s17.person.employee.AddPerson</property>
 
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
@@ -46,12 +45,8 @@
     url_expr="string:${object_url}/" visible="True">
     <permission value="View" />
   </action>
-  <!-- XXX: why do we need 2 edit actions here? -->
-  <action title="Edit" action_id="employee_edit" category="object" condition_expr=""
+  <action title="Edit" action_id="edit" category="object" condition_expr=""
     url_expr="string:${object_url}/employee_edit" visible="True">
-    <permission value="Modify portal content" />
-  </action>
-  <action title="Edit" action_id="edit" category="object" visible="False">
     <permission value="Modify portal content" />
   </action>
 </object>
