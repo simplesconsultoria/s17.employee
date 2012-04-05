@@ -16,8 +16,8 @@
 
     <!-- Permissions -->
     <permission
-       id="s17.person.employee.AddPerson"
-       title="s17.person.employee: Add person"
+       id="s17.person.employee.AddEmployee"
+       title="s17.person.employee: Add employee"
     />
 
 </configure>
