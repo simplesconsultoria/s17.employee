@@ -79,8 +79,7 @@ class FieldsetTest(unittest.TestCase):
     def test_fieldsets(self):
         behaviors = []
         behaviors.append(self.name)
-        fti = queryUtility(IDexterityFTI,
-                           name='s17.employee')
+        fti = queryUtility(IDexterityFTI, name='s17.employee')
         fti.behaviors = tuple(behaviors)
         e1 = self.folder['e1']
         request = self.layer['request']
@@ -94,8 +93,7 @@ class FieldsetTest(unittest.TestCase):
     def test_fake_fieldsets(self):
         behaviors = []
         behaviors.append(self.fake_name)
-        fti = queryUtility(IDexterityFTI,
-                           name='s17.employee')
+        fti = queryUtility(IDexterityFTI, name='s17.employee')
         fti.behaviors = tuple(behaviors)
         e1 = self.folder['e1']
         request = self.layer['request']
