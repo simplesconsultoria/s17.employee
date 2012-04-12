@@ -8,7 +8,7 @@
         name="default"
         title="s17.person.employee: Install"
         directory="profiles/default"
-        description="Install Employee content type for collective.person"
+        description="Install Employee content type"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
@@ -16,7 +16,7 @@
         name="uninstall"
         title="Uninstall s17.person.employee"
         directory="profiles/uninstall"
-        description="Uninstall s17.person.employee"
+        description="Uninstall Employee content type"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 

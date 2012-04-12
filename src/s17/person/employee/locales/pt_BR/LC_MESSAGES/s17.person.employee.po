@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"PO-Revision-Date: 2012-03-09 17:03-0300\n"
+"Last-Translator: Alejandro Pereira <alepereira86@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: pt-BR\n"
+"Language-Name: Portuguese\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: DOMAIN\n"
+
+#: s17/person/employee/profiles.zcml:9
+msgid "s17.person.employee: Install"
+msgstr "s17.person.employee: Instalar"
+
+#: s17/person/employee/profiles.zcml:11
+msgid "Install Employee content type"
+msgstr "Instalar o tipo de conteúdo Empregado"
+
+#: s17/person/employee/profiles.zcml:19
+msgid "Uninstall Employee content type"
+msgstr "Desinstalar o tipo de conteúdo Empregado"
+
+#: s17/person/employee/profiles/default/types/s17.employee.xml:8
+msgid "Employee"
+msgstr "Empregado"
+
