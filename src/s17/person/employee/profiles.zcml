@@ -20,4 +20,20 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <genericsetup:registerProfile
+        name="demo"
+        title="s17.person.employee: Demo profile"
+        directory="profiles/demo"
+        description="Add content for demos"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
+
+    <genericsetup:importStep
+       name="s17.person.employee-demo-steps"
+       title="s17.person.employee: Demo steps"
+       description="Do all things necessary to set the demo."
+       handler=".setuphandlers.demo_steps">
+    </genericsetup:importStep>
+
 </configure>
