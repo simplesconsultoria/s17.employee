@@ -110,13 +110,13 @@ def demo_steps(context):
         review_state = folder[employee].portal_workflow.getInfoFor(
                                                             folder[employee],
                                                             'review_state')
-        if not review_state == 'published':
+        if not review_state == 'internally_published':
             folder[employee].portal_workflow.doActionFor(folder[employee],
-                                                       'publish')
+                                                       'publish_internally')
     #publish folder
     review_state = folder.portal_workflow.getInfoFor(folder, 'review_state')
-    if not review_state == 'published':
-        folder.portal_workflow.doActionFor(folder, 'publish')
+    if not review_state == 'internally_published':
+        folder.portal_workflow.doActionFor(folder, 'publish_internally')
 
     import transaction
     transaction.commit()

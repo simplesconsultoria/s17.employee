@@ -1,8 +1,14 @@
 Changelog
 ----------
 
+0.2dev (2012-05-22)
+^^^^^^^^^^^^^^^^^^^
+
+- A demo profile added. [aleGpereira]
+
+- Remove collective.person default profile to be installed. [aleGpereira]
+
 0.1dev (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
- *  Package created using pasteScript
-    [Simples Consultoria]
+- Initial release
