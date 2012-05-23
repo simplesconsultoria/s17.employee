@@ -1,12 +1,16 @@
 Changelog
 ----------
 
-0.2dev (2012-05-22)
-^^^^^^^^^^^^^^^^^^^
+1.0a2 (unreleased)
+^^^^^^^^^^^^^^^^^^^^^
 
-- A demo profile added. [aleGpereira]
+- Package documentation was updated. [hvelarde]
 
-0.1dev (unreleased)
-^^^^^^^^^^^^^^^^^^^
+- A demo profile was added. [aleGpereira]
+
+
+1.0a1 (2012-05-09)
+^^^^^^^^^^^^^^^^^^
 
 - Initial release
+

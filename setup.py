@@ -3,7 +3,9 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.0'
+version = '1.0a2'
+description = "A package containing a Dexterity content type and behaviors \
+to represent an Employe as a content in a Plone site."
 long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
@@ -11,7 +13,7 @@ long_description = open("README.txt").read() + "\n" + \
 
 setup(name='s17.person.employee',
       version=version,
-      description="A employee content type based on person",
+      description=description,
       long_description=long_description,
       classifiers=[
         "Development Status :: 3 - Alpha",
