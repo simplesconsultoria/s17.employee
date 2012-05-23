@@ -6,8 +6,6 @@ Changelog
 
 - A demo profile added. [aleGpereira]
 
-- Remove collective.person default profile to be installed. [aleGpereira]
-
 0.1dev (unreleased)
 ^^^^^^^^^^^^^^^^^^^
 
