@@ -42,7 +42,7 @@ setup(name='s17.person.employee',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'collective.person',
+        'collective.person>=1.0a2',
         ],
       extras_require={
         'test': ['plone.app.testing'],
