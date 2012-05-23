@@ -55,8 +55,8 @@ product. The steps to activate this profile you must do:
     4. Check the step ''s17.person.employee: Demo steps'' and click the
        button ''import selected steps''.
 
-Once you done the process you can see in you site a folder called ''Persons''
-with five person items in wich each one have a base of information with a
+Once you done the process you can see in you site a folder called ''Employees''
+with five employee items in wich each one have a base of information with a
 picture.
 
 With this option you can have a quick view to see what this product offers.
