@@ -54,6 +54,30 @@ class IntegrationTest(unittest.TestCase):
         self.assertTrue(IReferenceable.providedBy(e1))
         self.assertTrue(IAttributeUUID.providedBy(e1))
 
+    def test_setTitle(self):
+        self.folder.invokeFactory('s17.employee', 'e1')
+        e1 = self.folder['e1']
+        # Simple name and surname
+        e1.setTitle('James Kirk')
+        self.assertEquals(e1.given_name, 'James')
+        self.assertEquals(e1.surname, 'Kirk')
+        self.assertEquals(e1.fullname, 'James Kirk')
+        # With two surnames
+        e1.setTitle('James T. Kirk')
+        self.assertEquals(e1.given_name, 'James')
+        self.assertEquals(e1.surname, 'T. Kirk')
+        self.assertEquals(e1.fullname, 'James T. Kirk')
+        # Just a name
+        e1.setTitle('Kirk')
+        self.assertEquals(e1.given_name, 'Kirk')
+        self.assertEquals(e1.surname, '')
+        self.assertEquals(e1.fullname, 'Kirk ')
+        # Nothing
+        e1.setTitle('')
+        self.assertEquals(e1.given_name, '')
+        self.assertEquals(e1.surname, '')
+        self.assertEquals(e1.fullname, ' ')
+
 
 class FieldsetTest(unittest.TestCase):
 
