@@ -36,4 +36,20 @@
        handler=".setuphandlers.demo_steps">
     </genericsetup:importStep>
 
+    <genericsetup:registerProfile
+        name="use_memberarea"
+        title="s17.person.employee: Create member areas"
+        directory="profiles/use_memberarea"
+        description="Create member ares using employee content type"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        i18n:attributes="title; description"
+        />
+
+    <genericsetup:importStep
+       name="s17.person.employee-use_memberarea"
+       title="s17.person.employee: Create Member Areas"
+       description="Configure creation of member areas"
+       handler=".setuphandlers.use_memberarea">
+    </genericsetup:importStep>
+
 </configure>
