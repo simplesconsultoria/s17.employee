@@ -130,3 +130,18 @@ def create_user(username, password, portal):
     }
     reg_tool = getToolByName(portal, 'portal_registration')
     reg_tool.addMember(username, password, properties=properties)
+
+
+def use_memberarea(context):
+    if context.readDataFile('s17.person.employee-use_memberarea.txt') is None:
+        return
+    portal = context.getSite()
+    mt = getToolByName(portal, 'portal_membership')
+    mt.memberarea_type = 's17.employee'
+    mt.membersfolder_id = 'Members'
+    mt.memberareaCreationFlag = True
+    # Create base folder
+    if not 'Members' in portal.objectIds():
+        portal.invokeFactory(type_name='Folder',
+                             id='Members',
+                             title='Intranet Members')

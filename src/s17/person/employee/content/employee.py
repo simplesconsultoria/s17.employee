@@ -24,6 +24,25 @@ class IEmployee(IPerson):
 class Employee(Person):
     """ Implementation of IEmployee
     """
+    def setTitle(self, value):
+        ''' Membership tool expects a setTitle '''
+        title = value.split(' ')
+        given_name = surname = ''
+        if len(title) == 2:
+            given_name = title[0]
+            surname = title[1]
+        elif len(title) == 1:
+            given_name = title[0]
+            surname = ''
+        elif len(title) > 2:
+            given_name = title[0]
+            surname = ' '.join(title[1:])
+        else:
+            # Overide here
+            given_name = ''
+            surname = ''
+        self.given_name = given_name
+        self.surname = surname
 
 
 class EmployeeEditForm(dexterity.EditForm):
