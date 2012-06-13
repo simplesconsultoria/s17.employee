@@ -3,10 +3,9 @@ s17.person.employee
 *******************
 
 .. contents:: Table of Contents
-   :depth: 2
 
-Overview
---------
+Life, the Universe, and Everything
+----------------------------------
 
 A package containing a Dexterity content type and behaviors to represent an
 Employe as a content in a Plone site.
@@ -35,5 +34,11 @@ information with a picture.
 
 With this option you can have a quick view to see what this product offers.
 
+Mostly Harmless
+---------------
+
+Have an idea? Found a bug? Let us know by `opening a support ticket`_.
+
 .. _`collective.person`: https://github.com/simplesconsultoria/collective.person
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.person.employee/issues
 
