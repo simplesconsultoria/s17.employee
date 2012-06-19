@@ -1,18 +1,16 @@
 Changelog
-----------
+---------
 
 Because you have to know where your towel is.
 
 1.0a4 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Fix some problems in tests cases. [aleGpereira]
 
+- Adding demo profile test. [aleGpereira]
 
-1.0a3 (2012-06-13)
-^^^^^^^^^^^^^^^^^^
-
-- Nothing changed yet.
+- Fix a couple of bugs in setuphandlers. [aleGpereira]
 
 
 1.0a3 (2012-06-13)
