@@ -25,8 +25,8 @@ _PROFILE_ID = 's17.person.employee:default'
 
 
 def run_upgrades(context):
-    ''' Run Upgrade steps
-    '''
+    """ Run Upgrade steps.
+    """
     if context.readDataFile('s17.person.employee-default.txt') is None:
         return
     logger = logging.getLogger(_PROJECT)
@@ -52,8 +52,10 @@ def demo_steps(context):
     if context.readDataFile('s17.person.employee-demo.txt') is None:
         return
     portal = context.getSite()
-    portal.invokeFactory('Folder', 'Employees')
-    folder = portal['Employees']
+    portal.invokeFactory('Folder', 'employees')
+    folder = portal['employees']
+    folder.title = 'Employees'
+    pw = getToolByName(portal, 'portal_workflow')
     list_users = [{'name':'marcelo-santos', 'password':'marcelo',
                     'number': '1', 'birthday': (1985, 2, 17)},
                   {'name':'marcelo-alves', 'password':'marcelo',
@@ -69,10 +71,11 @@ def demo_steps(context):
         create_user(user['name'], user['password'], portal)
 
     # Set behaviors to employee
-    behaviors = ['collective.person.behaviors.user.IPloneUser',
-                 'collective.person.behaviors.contact.IContactInfo']
     fti = queryUtility(IDexterityFTI,
                         name='s17.employee')
+    behaviors = fti.behaviors + \
+                tuple(['collective.person.behaviors.user.IPloneUser',
+                'collective.person.behaviors.contact.IContactInfo'])
     fti.behaviors = tuple(behaviors)
 
     for user in list_users:
@@ -107,16 +110,16 @@ def demo_steps(context):
         p1_ploneuser = IPloneUser(folder[employee])
         p1_ploneuser.user_name = employee
         folder[employee].reindexObject()
-        review_state = folder[employee].portal_workflow.getInfoFor(
-                                                            folder[employee],
-                                                            'review_state')
+        review_state = pw.getStatusOf(folder[employee], 'review_state')
         if not review_state == 'internally_published':
-            folder[employee].portal_workflow.doActionFor(folder[employee],
-                                                       'publish_internally')
-    #publish folder
-    review_state = folder.portal_workflow.getInfoFor(folder, 'review_state')
-    if not review_state == 'internally_published':
-        folder.portal_workflow.doActionFor(folder, 'publish_internally')
+            pw.doActionFor(folder[employee], 'publish_internally')
+
+    # publish folder. Folder must have intranet_workflow assigned.
+    review_state = pw.getStatusOf(folder, 'review_state')
+    folder_wchain = pw.getChainFor(folder)
+    if folder_wchain == 'intranet_workflow' and \
+       review_state != 'internally_published':
+        pw.doActionFor(folder, 'publish_internally')
 
     import transaction
     transaction.commit()
@@ -140,6 +143,7 @@ def use_memberarea(context):
     mt.memberarea_type = 's17.employee'
     mt.membersfolder_id = 'Members'
     mt.memberareaCreationFlag = True
+
     # Create base folder
     if not 'Members' in portal.objectIds():
         portal.invokeFactory(type_name='Folder',

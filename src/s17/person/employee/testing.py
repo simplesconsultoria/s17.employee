@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from Products.CMFCore.utils import getToolByName
+
 from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
@@ -17,7 +19,10 @@ class Fixture(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
+        pw = getToolByName(portal, 'portal_workflow')
+        pw.setDefaultChain('intranet_workflow')
         self.applyProfile(portal, 's17.person.employee:default')
+        self.applyProfile(portal, 's17.person.employee:demo')
 
 
 FIXTURE = Fixture()

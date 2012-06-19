@@ -2,6 +2,8 @@
 
 import unittest2 as unittest
 
+from Products.CMFCore.utils import getToolByName
+
 from plone.app.testing import applyProfile
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import TEST_USER_NAME
@@ -17,7 +19,7 @@ class MemberAreaTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.membership = self.portal.portal_membership
+        self.membership = getToolByName(self.portal, 'portal_membership')
         applyProfile(self.portal, 's17.person.employee:use_memberarea')
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
