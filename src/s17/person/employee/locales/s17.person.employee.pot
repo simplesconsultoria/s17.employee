@@ -1,10 +1,7 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-03-09 19:08+0000\n"
+"POT-Creation-Date: 2012-07-11 23:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,25 +12,21 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: s17.person.employee\n"
+"Domain: DOMAIN\n"
 
-#: s17/person/employee/profiles.zcml:9
-msgid "s17.person.employee: Install"
+#: s17/person/employee/profiles/default/types/s17.employee.xml
+msgid "An employee"
 msgstr ""
 
-#: s17/person/employee/profiles.zcml:11
-msgid "Install Employee content type"
+#: s17/person/employee/browser/employee_templates/view.pt:65
+msgid "Biography"
 msgstr ""
 
-#: s17/person/employee/profiles.zcml:17
-msgid "Uninstall s17.person.employee"
-msgstr ""
-
-#: s17/person/employee/profiles.zcml:19
-msgid "Uninstall s17.person.employee"
-msgstr ""
-
-#: s17/person/employee/profiles/default/types/s17.employee.xml:8
+#: s17/person/employee/profiles/default/types/s17.employee.xml
 msgid "Employee"
+msgstr ""
+
+#: s17/person/employee/browser/employee_templates/view.pt:50
+msgid "Portrait"
 msgstr ""
 

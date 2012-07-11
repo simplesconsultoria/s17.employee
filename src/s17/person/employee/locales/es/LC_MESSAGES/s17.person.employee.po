@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"POT-Creation-Date: 2012-07-11 23:24+0000\n"
 "PO-Revision-Date: 2012-03-15 19:10-0300\n"
 "Last-Translator: Alejandro Pereira <alepereira86@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,19 +14,19 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: s17/person/employee/profiles.zcml:9
-msgid "s17.person.employee: Install"
-msgstr "s17.person.employee: Instalar"
+#: s17/person/employee/profiles/default/types/s17.employee.xml
+msgid "An employee"
+msgstr ""
 
-#: s17/person/employee/profiles.zcml:11
-msgid "Install Employee content type"
-msgstr "Instalar tipo de contenido Empleado"
+#: s17/person/employee/browser/employee_templates/view.pt:65
+msgid "Biography"
+msgstr ""
 
-#: s17/person/employee/profiles.zcml:19
-msgid "Uninstall Employee content type"
-msgstr "Desinstalar tipo de contenido Empleado"
-
-#: s17/person/employee/profiles/default/types/s17.employee.xml:8
+#: s17/person/employee/profiles/default/types/s17.employee.xml
 msgid "Employee"
 msgstr "Empleado"
+
+#: s17/person/employee/browser/employee_templates/view.pt:50
+msgid "Portrait"
+msgstr ""
 
