@@ -8,7 +8,8 @@ BASE_DIRECTORY="src/s17/person/employee"
 i18ndude rebuild-pot --pot ${BASE_DIRECTORY}/locales/${I18NDOMAIN}.pot \
     --merge ${BASE_DIRECTORY}/locales/manual.pot \
     --create ${I18NDOMAIN} \
-    ${BASE_DIRECTORY}
+    ${BASE_DIRECTORY} \
+    ${BASE_DIRECTORY}/profiles.zcml
 
 # Synchronise the resulting .pot with all .po files
 for po in ${BASE_DIRECTORY}/locales/*/LC_MESSAGES/${I18NDOMAIN}.po; do
