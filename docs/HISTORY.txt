@@ -6,7 +6,8 @@ Because you have to know where your towel is.
 1.0a5 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- View for employee added [lepri]
+- Updated Brazilian Portuguese translation. [lepri]
 
 
 1.0a4 (2012-06-19)
