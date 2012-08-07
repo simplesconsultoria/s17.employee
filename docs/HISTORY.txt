@@ -47,5 +47,5 @@ Because you have to know where your towel is.
 1.0a1 (2012-05-09)
 ^^^^^^^^^^^^^^^^^^
 
-- Initial release
+- Initial release.
 
