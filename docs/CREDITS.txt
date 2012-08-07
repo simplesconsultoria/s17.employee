@@ -7,6 +7,7 @@ the following people:
 - Alejandro Pereira
 - Héctor Velarde
 - Érico Andrei
+- Gustavo Lepri
 
 Development sponsored by Simples Consultoria.
 
