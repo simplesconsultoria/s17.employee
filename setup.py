@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 version = '1.0a5.dev0'
 description = "A package containing a Dexterity content type and behaviors \
-to represent an Employe as a content in a Plone site."
+to represent an Employe on a Plone site."
 long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "INSTALL.txt")).read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
@@ -22,6 +22,7 @@ setup(name='s17.person.employee',
         "Framework :: Plone :: 4.1",
         "Framework :: Plone :: 4.2",
         "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
         "Programming Language :: Python :: 2.6",
@@ -35,7 +36,7 @@ setup(name='s17.person.employee',
       author='Simples Consultoria',
       author_email='products@simplesconsultoria.com.br',
       url='http://www.simplesconsultoria.com.br',
-      license='GPL',
+      license='GPLv2',
       packages=find_packages('src'),
       package_dir={'': 'src'},
       namespace_packages=['s17', 's17.person'],
@@ -43,6 +44,7 @@ setup(name='s17.person.employee',
       zip_safe=False,
       install_requires=[
         'setuptools',
+        'Products.CMFPlone>=4.1',
         'collective.person>=1.0a3',
         ],
       extras_require={
