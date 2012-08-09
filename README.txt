@@ -37,6 +37,9 @@ With this option you can have a quick view to see what this product offers.
 Mostly Harmless
 ---------------
 
+.. image:: https://secure.travis-ci.org/simplesconsultoria/s17.person.employee.png
+    :target: http://travis-ci.org/simplesconsultoria/s17.person.employee
+
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`collective.person`: https://github.com/simplesconsultoria/collective.person
