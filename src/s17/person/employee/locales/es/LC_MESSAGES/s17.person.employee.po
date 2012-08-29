@@ -16,11 +16,11 @@ msgstr ""
 
 #: s17/person/employee/profiles/default/types/s17.employee.xml
 msgid "An employee"
-msgstr ""
+msgstr "Un empleado"
 
 #: s17/person/employee/browser/employee_templates/view.pt:65
 msgid "Biography"
-msgstr ""
+msgstr "Biografía"
 
 #: s17/person/employee/profiles/default/types/s17.employee.xml
 msgid "Employee"
@@ -28,5 +28,4 @@ msgstr "Empleado"
 
 #: s17/person/employee/browser/employee_templates/view.pt:50
 msgid "Portrait"
-msgstr ""
-
+msgstr "Retrato"

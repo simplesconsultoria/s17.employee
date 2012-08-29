@@ -29,4 +29,3 @@ msgstr "Funcionário"
 #: s17/person/employee/browser/employee_templates/view.pt:50
 msgid "Portrait"
 msgstr "Retrato"
-

@@ -4,13 +4,17 @@ from five import grok
 
 from z3c.form import field
 
+from Products.CMFCore.utils import getToolByName
+
 from plone.autoform.utils import processFieldMoves, processFields
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.directives import dexterity
 from plone.z3cform.fieldsets.group import GroupFactory
 
+from collective.person.behaviors.user import IPloneUser
 from collective.person.content.person import IPerson
 from collective.person.content.person import Person
+
 
 fields = IPerson.names()
 fields.reverse()
@@ -145,3 +149,29 @@ class EmployeeEditForm(dexterity.EditForm):
             for schema in self.additionalSchemata:
                 processFieldMoves(self, schema, prefix=prefixes[schema])
             processFieldMoves(self, self.schema)
+
+
+class View(dexterity.DisplayForm):
+    grok.context(IEmployee)
+    grok.require('zope2.View')
+    grok.name('view')
+
+    def biography(self):
+        context = self.context
+        id = context.getId()
+        pm = getToolByName(context, 'portal_membership')
+        pt = getToolByName(context, 'portal_types')
+        fti = pt['s17.employee']
+        user = pm.getMemberById(id)
+        if not user and \
+           'collective.person.behaviors.user.IPloneUser' in fti.behaviors:
+            item = IPloneUser(context)
+            user = pm.getMemberById(item.user_name)
+        if user:
+            biography = user.getProperty('description')
+            if biography:
+                return biography
+            else:
+                return None
+        else:
+            return None
