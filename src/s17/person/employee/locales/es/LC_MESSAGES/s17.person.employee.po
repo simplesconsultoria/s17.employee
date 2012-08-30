@@ -29,3 +29,7 @@ msgstr "Empleado"
 #: s17/person/employee/browser/employee_templates/view.pt:50
 msgid "Portrait"
 msgstr "Retrato"
+
+#: s17/person/employee/content/employee.py:37
+msgid "Years of birthdays can't be less than 1800."
+msgstr "Los años en cumpleaños no pueden ser menores de 1800."

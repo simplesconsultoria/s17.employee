@@ -2,6 +2,8 @@
 
 from five import grok
 
+from zope.interface import Invalid, invariant
+
 from z3c.form import field
 
 from Products.CMFCore.utils import getToolByName
@@ -15,6 +17,8 @@ from collective.person.behaviors.user import IPloneUser
 from collective.person.content.person import IPerson
 from collective.person.content.person import Person
 
+from s17.person.employee import MessageFactory as _
+
 
 fields = IPerson.names()
 fields.reverse()
@@ -23,6 +27,14 @@ fields.reverse()
 class IEmployee(IPerson):
     """ A representation of a Employee
     """
+
+    @invariant
+    def restrict_year(data):
+        ''' Check year of birthday. '''
+        birthday = data.birthday
+        year = birthday.year
+        if year < '1800':
+            raise Invalid(_(u"Years of birthdays can't be less than 1800."))
 
 
 class Employee(Person):
