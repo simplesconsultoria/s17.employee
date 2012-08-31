@@ -31,5 +31,5 @@ msgid "Portrait"
 msgstr "Retrato"
 
 #: s17/person/employee/content/employee.py:37
-msgid "Years of birthdays can't be less than 1800."
-msgstr "Anos de aniversários não pode ser inferior a 1800."
+msgid "Years of birthdays have to be greater than 1900."
+msgstr "Anos de aniversários tem que ser maior que 1900."

@@ -33,8 +33,8 @@ class IEmployee(IPerson):
         ''' Check year of birthday. '''
         birthday = data.birthday
         year = birthday.year
-        if year < '1800':
-            raise Invalid(_(u"Years of birthdays can't be less than 1800."))
+        if year < 1901:
+            raise Invalid(_(u"Years of birthdays have to be greater than 1900."))
 
 
 class Employee(Person):

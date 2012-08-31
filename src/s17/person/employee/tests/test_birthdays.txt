@@ -1,0 +1,30 @@
+Functional test:
+
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> request = layer['request']
+
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> portalURL = portal.absolute_url()
+
+    >>> from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+    >>> browser.open(portalURL + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+    >>> browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'You are now logged in' in browser.contents
+    True
+
+Test year of birthday:
+
+    >>> browser.open(portalURL + '/++add++s17.employee')
+    >>> browser.getControl(name='form.widgets.given_name').value = 'Name'
+    >>> browser.getControl(name='form.widgets.surname').value = 'Surname'
+    >>> browser.getControl(name='form.widgets.birthday-day').value = '15'
+    >>> browser.getControl(name='form.widgets.birthday-year').value = '1799'
+    >>> browser.getControl(name='form.buttons.save').click()
+
+    >>> "Years of birthdays have to be greater than 1900" in browser.contents
+    True
