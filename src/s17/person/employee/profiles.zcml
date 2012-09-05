@@ -33,6 +33,15 @@
         />
 
     <genericsetup:importStep
+        name="s17.person.employee-upgrades"
+        title="s17.person.employee: Upgrades"
+        description="Run available upgrades for this package."
+        handler="s17.person.employee.setuphandlers.run_upgrades">
+    </genericsetup:importStep>
+
+    <include package=".upgrades" />
+
+    <genericsetup:importStep
         name="s17.person.employee-demo-steps"
         title="s17.person.employee: Demo steps"
         description="Do all things necessary to set the demo."

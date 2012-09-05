@@ -7,8 +7,9 @@ from zope.component import queryUtility
 
 from Products.CMFCore.utils import getToolByName
 
-from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_ID, TEST_USER_NAME
 from plone.app.testing import setRoles
+from plone.app.testing import login
 
 from plone.app.referenceablebehavior.referenceable import IReferenceable
 from plone.dexterity.interfaces import IDexterityFTI
@@ -25,10 +26,10 @@ class IntegrationTest(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        setRoles(self.portal, TEST_USER_ID, ['Manager', 'Member'])
         self.portal.invokeFactory('Folder', 'test-folder')
-        setRoles(self.portal, TEST_USER_ID, ['Member'])
         self.folder = self.portal['test-folder']
+        login(self.portal, TEST_USER_NAME)
 
     def test_adding(self):
         self.folder.invokeFactory('s17.employee', 'e1')
@@ -79,6 +80,21 @@ class IntegrationTest(unittest.TestCase):
         self.assertEquals(e1.given_name, '')
         self.assertEquals(e1.surname, '')
         self.assertEquals(e1.fullname, ' ')
+
+    def test_biography(self):
+        # We config the plone user and attach a employee for it
+        pm = getToolByName(self.portal, 'portal_membership')
+        user = pm.getAuthenticatedMember()
+        properties = {"email":"aaa@aaa.com",
+                      "description": u"Just a user"}
+        user.setMemberProperties(mapping=properties)
+
+        self.folder.invokeFactory('s17.employee', TEST_USER_ID)
+        e1 = self.folder[TEST_USER_ID]
+
+        # We test the view method
+        view = e1.unrestrictedTraverse('view')
+        self.assertEqual(view.biography(), u"Just a user")
 
 
 class FieldsetTest(unittest.TestCase):
