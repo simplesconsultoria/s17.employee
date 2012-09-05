@@ -6,6 +6,8 @@ Because you have to know where your towel is.
 1.0a6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Config the product with upgrades. [aleGpereira]
+
 - Restrict year of birthday to be more than 1800. [aleGpereira]
 
 - Update translations [aleGpereira]
