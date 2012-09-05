@@ -15,6 +15,8 @@ from plone.app.referenceablebehavior.referenceable import IReferenceable
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.uuid.interfaces import IAttributeUUID
 
+from collective.person.behaviors.user import IPloneUser
+
 from s17.person.employee.content.employee import IEmployee
 
 from s17.person.employee.testing import INTEGRATION_TESTING
@@ -91,6 +93,24 @@ class IntegrationTest(unittest.TestCase):
 
         self.folder.invokeFactory('s17.employee', TEST_USER_ID)
         e1 = self.folder[TEST_USER_ID]
+
+        # We test the view method
+        view = e1.unrestrictedTraverse('view')
+        self.assertEqual(view.biography(), u"Just a user")
+
+    def test_biography_with_behavior(self):
+        pm = getToolByName(self.portal, 'portal_membership')
+        user = pm.getAuthenticatedMember()
+        properties = {"email": "aaa@aaa.com",
+                      "description": u"Just a user"}
+        user.setMemberProperties(mapping=properties)
+
+        # We config the employee and attach a plone user for it
+        self.folder.invokeFactory('s17.employee', 'e1')
+        e1 = self.folder['e1']
+        e1 = IPloneUser(e1)
+        e1.user_name = TEST_USER_ID
+        e1 = self.folder['e1']
 
         # We test the view method
         view = e1.unrestrictedTraverse('view')
