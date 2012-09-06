@@ -1,76 +1,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      xmlns:tal="http://xml.zope.org/namespaces/tal"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
-      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      lang="en"
-      metal:use-macro="context/main_template/macros/master"
-      i18n:domain="s17.person.employee">
-    <body>
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="s17.person.employee">
+  <body>
 
-        <metal:main fill-slot="main">
-            <tal:main-macro metal:define-macro="main">
+    <metal:main fill-slot="main">
+      <tal:main-macro metal:define-macro="main">
 
-                <div tal:replace="structure provider:plone.abovecontenttitle" />
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
 
-                <h1 class="documentFirstHeading" tal:content="context/title" />
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
 
-                <div tal:replace="structure provider:plone.belowcontenttitle" />
+        <div tal:replace="structure provider:plone.abovecontentbody" />
 
-                <p class="documentDescription" tal:content="context/description" />
+        <div class="field person-portrait"
+            tal:define="picture nocall:context/picture"
+            tal:condition="nocall:picture">
+          <img class="image-left"
+              tal:attributes="src string:${context/absolute_url}/@@images/picture/mini" />
+          <br />
+          <h1 class="documentFirstHeading">
+            <span tal:replace="context/title" />
+            <span tal:define="user_name python:view.w['IPloneUser.user_name'].render().strip()"
+                tal:content="structure python:'(%s)' % user_name" />
+          </h1>
+          <p>
+            <label tal:content="view/w/gender/label"/>: <span tal:content="structure view/w/gender/render" /><br />
+            <label tal:content="view/w/birthday/label"/>: <span tal:content="structure view/w/birthday/render" />
+            <tal:block repeat="widget view/widgets/values" >
+              <tal:widgets
+                  condition="python:widget.__name__ not in ('given_name',
+                                    'surname', 'IPloneUser.user_name', 'picture', 'birthday', 'gender')
+                                     and widget.value not in ('', [], {})">
+                <label tal:content="structure widget/label" />:
+                <span tal:content="structure widget/render" /><br />
+              </tal:widgets>
+            </tal:block>
+          </p>
+        </div>
 
-                <div tal:replace="structure provider:plone.abovecontentbody" />
+        <div class="field person-biography" tal:condition="view/biography">
+          <h3 i18n:translate="">Biography</h3>
+          <div tal:content="view/biography" />
+        </div>
 
-                <div class="field">
-                    <label tal:content="view/w/given_name/label"/>
-                    <br />
-                    <div tal:content="structure view/w/given_name/render" />
-                </div>
+        <div tal:replace="structure provider:plone.belowcontentbody" />
 
-                <div class="field">
-                    <label tal:content="view/w/surname/label"/>
-                    <br />
-                    <div tal:content="structure view/w/surname/render" />
-                </div>
+      </tal:main-macro>
+    </metal:main>
 
-                <div class="field">
-                    <label tal:content="view/w/gender/label"/>
-                    <br />
-                    <div tal:content="structure view/w/gender/render" />
-                </div>
-
-                <div class="field">
-                    <label tal:content="view/w/birthday/label"/>
-                    <br />
-                    <div tal:content="structure view/w/birthday/render" />
-                </div>
-
-                <div class="field person-portrait"
-                    tal:define="picture nocall:context/picture"
-                    tal:condition="nocall:picture">
-                    <label i18n:translate="">Portrait</label>
-                    <br />
-                    <img tal:attributes="src string:${context/absolute_url}/@@images/picture/thumb;" />
-                </div>
-
-                <tal:block repeat="widget view/widgets/values" >
-                    <div class="field" tal:condition="python:widget.__name__ not in ('given_name',
-                                                            'surname', 'picture', 'birthday', 'gender')
-                                                            and widget.value not in ('',[],{})">
-                        <label tal:content="structure widget/label" />
-                        <br />
-                        <div tal:content="structure widget/render" />
-                    </div>
-                </tal:block>
-            <div class="field person-biography"
-                 tal:condition="view/biography">
-                <label i18n:translate="">Biography</label>
-                <div tal:content="view/biography" />
-            </div>
-
-                <div tal:replace="structure provider:plone.belowcontentbody" />
-
-            </tal:main-macro>
-        </metal:main>
-
-    </body>
+  </body>
 </html>
