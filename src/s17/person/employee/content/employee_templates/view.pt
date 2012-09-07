@@ -16,41 +16,48 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div class="field person-portrait">
+        <div class="person-main-info">
           <img class="image-left"
               tal:define="picture nocall:context/picture"
               tal:condition="nocall:picture"
               tal:attributes="src string:${context/absolute_url}/@@images/picture/mini" />
-          <br />
           <h1 class="documentFirstHeading">
             <span tal:replace="context/title" />
-            <span tal:define="user_name python:view.w['IPloneUser.user_name'].render().strip()"
+            <span
+                tal:define="user_name python:view.w.get('IPloneUser.user_name');
+                            user_name python:user_name and user_name.render().strip() or ''"
+                tal:condition="user_name"
                 tal:content="structure python:'(%s)' % user_name" />
           </h1>
-          <p>
+          <div tal:define="main_info python:('given_name', 'surname', 'IPloneUser.user_name', 'picture', 'birthday', 'gender')">
             <label tal:content="view/w/gender/label"/>: <span tal:content="structure view/w/gender/render" /><br />
             <label tal:content="view/w/birthday/label"/>: <span tal:content="structure view/w/birthday/render" /><br />
-            <tal:more-fields
-                define="foo string:"
-                repeat="widget view/widgets/values">
-              <tal:conditions define="is_more python:widget.__name__ not in ('given_name', 'surname', 'IPloneUser.user_name', 'picture', 'birthday', 'gender') and widget.value not in ('', [], {});
-                                 is_contact python:'IContactInfo' in widget.__name__">
-                <tal:block condition="python:is_more and not is_contact">
-                  <label tal:content="structure widget/label" />:
-                  <span tal:content="structure widget/render" /><br />
-                </tal:block>
-                <tal:block tal:condition="python:is_contact">
-                  <div class="visualClear" tal:condition="python:not foo"><!-- --></div>
-                  <h3 tal:condition="python:not foo" i18n:translate="">
-                    Informações de contato
-                  </h3>
-                  <label tal:define="global foo string:bar"
-                      tal:content="structure widget/label" />:
-                  <span tal:content="structure widget/render" /><br />
-                </tal:block>
-              </tal:conditions>
+            <tal:more-fields repeat="widget view/widgets/values">
+              <tal:field
+                  define="is_more python:widget.__name__ not in main_info
+                                         and widget.value not in ('', [], {});
+                          is_contact python:'IContactInfo' in widget.__name__"
+                  condition="python:is_more and not is_contact">
+                <label tal:content="structure widget/label" />:
+                <span tal:content="structure widget/render" /><br />
+              </tal:field>
             </tal:more-fields>
-          </p>
+          </div>
+        </div>
+        <div class="person-contact-info">
+          <tal:contact-fields define="foo string:" repeat="widget view/widgets/values">
+            <tal:field
+                define="is_contact python:'IContactInfo' in widget.__name__"
+                condition="is_contact">
+              <div class="visualClear" tal:condition="not:foo"><!-- --></div>
+              <h3 tal:condition="python:not foo" i18n:translate="">
+                Informações de contato
+              </h3>
+              <label tal:define="global foo string:bar"
+                  tal:content="structure widget/label" />:
+              <span tal:content="structure widget/render" /><br />
+            </tal:field>
+          </tal:contact-fields>
         </div>
 
         <div class="field person-biography" tal:condition="view/biography">
