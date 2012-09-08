@@ -29,7 +29,8 @@
                 tal:condition="user_name"
                 tal:content="structure python:'(%s)' % user_name" />
           </h1>
-          <div tal:define="main_info python:('given_name', 'surname', 'IPloneUser.user_name', 'picture', 'birthday', 'gender')">
+          <div class="person-more-info"
+              tal:define="main_info python:('given_name', 'surname', 'IPloneUser.user_name', 'picture', 'birthday', 'gender')">
             <label tal:content="view/w/gender/label"/>: <span tal:content="structure view/w/gender/render" /><br />
             <label tal:content="view/w/birthday/label"/>: <span tal:content="structure view/w/birthday/render" /><br />
             <tal:more-fields repeat="widget view/widgets/values">
@@ -44,18 +45,23 @@
             </tal:more-fields>
           </div>
         </div>
+
         <div class="person-contact-info">
-          <tal:contact-fields define="foo string:" repeat="widget view/widgets/values">
+          <tal:contact-fields
+              define="foo string:"
+              repeat="widget view/widgets/values">
             <tal:field
-                define="is_contact python:'IContactInfo' in widget.__name__"
-                condition="is_contact">
+                define="is_contact python:'IContactInfo' in widget.__name__;
+                        render widget/render;
+                        has_info python:render.find('-2') < 0"
+                condition="python:is_contact and has_info">
               <div class="visualClear" tal:condition="not:foo"><!-- --></div>
               <h3 tal:condition="python:not foo" i18n:translate="">
                 Informações de contato
               </h3>
               <label tal:define="global foo string:bar"
                   tal:content="structure widget/label" />:
-              <span tal:content="structure widget/render" /><br />
+              <span tal:content="structure render" /><br />
             </tal:field>
           </tal:contact-fields>
         </div>
