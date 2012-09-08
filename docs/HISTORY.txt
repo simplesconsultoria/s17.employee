@@ -12,6 +12,8 @@ Because you have to know where your towel is.
 
 - Update translations [aleGpereira]
 
+- New implementation of Employee view [davilima6]
+
 
 1.0a5 (2012-08-07)
 ^^^^^^^^^^^^^^^^^^
