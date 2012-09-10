@@ -74,7 +74,7 @@ class EmployeeEditForm(dexterity.EditForm):
         result = False
         for behavior in assignable.enumerateBehaviors():
             if (behavior.interface.getName() == schema.getName()) and \
-               (behavior.factory.__module__.find('collective.person') == 0):
+               (behavior.interface.__module__.find('collective.person') == 0):
                 result = behavior
         return result
 
