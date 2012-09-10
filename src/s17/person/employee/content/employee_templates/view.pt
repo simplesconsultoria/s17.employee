@@ -16,6 +16,12 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
+        <dl class="portalMessage info"
+            tal:condition="not:view/check_member">
+            <dt i18n:translate="">Information</dt>
+            <dd i18n:translate="">There is not a Plone user attached to this employee.</dd>
+        </dl>
+
         <div class="person-main-info">
           <img class="image-left"
               tal:define="picture nocall:context/picture"

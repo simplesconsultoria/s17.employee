@@ -18,7 +18,7 @@ msgstr ""
 msgid "An employee"
 msgstr "Un empleado"
 
-#: s17/person/employee/browser/employee_templates/view.pt:65
+#: s17/person/employee/content/employee_templates/view.pt:65
 msgid "Biography"
 msgstr "Biografía"
 
@@ -26,10 +26,18 @@ msgstr "Biografía"
 msgid "Employee"
 msgstr "Empleado"
 
-#: s17/person/employee/browser/employee_templates/view.pt:50
+#: s17/person/employee/content/employee_templates/view.pt:50
 msgid "Portrait"
 msgstr "Retrato"
 
 #: s17/person/employee/content/employee.py:37
 msgid "Years of birthdays have to be greater than 1900."
 msgstr "Los años en cumpleaños tiene que ser mayor que 1900."
+
+#: s17/person/employee/content/employee_templates/view.pt:21
+msgid "Information"
+msgstr "Información"
+
+#: s17/person/employee/content/employee_templates/view.pt:22
+msgid "There is not a Plone user attached to this employee."
+msgstr "No hay un usuario Plone asignado a este empleado."

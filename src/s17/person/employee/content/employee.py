@@ -3,17 +3,22 @@
 from five import grok
 
 from zope.interface import Invalid, invariant
+from zope.app.container.interfaces import IObjectAddedEvent
+from zope.component import queryUtility
 
 from z3c.form import field
 
 from Products.CMFCore.utils import getToolByName
+from Products.statusmessages.interfaces import IStatusMessage
 
 from plone.autoform.utils import processFieldMoves, processFields
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.directives import dexterity
 from plone.z3cform.fieldsets.group import GroupFactory
+from plone.i18n.normalizer.interfaces import IIDNormalizer
 
 from collective.person.behaviors.user import IPloneUser
+from collective.person.behaviors.contact import IContactInfo
 from collective.person.content.person import IPerson
 from collective.person.content.person import Person
 
@@ -169,16 +174,7 @@ class View(dexterity.DisplayForm):
     grok.name('view')
 
     def biography(self):
-        context = self.context
-        id = context.getId()
-        pm = getToolByName(context, 'portal_membership')
-        pt = getToolByName(context, 'portal_types')
-        fti = pt['s17.employee']
-        user = pm.getMemberById(id)
-        if not user and \
-           'collective.person.behaviors.user.IPloneUser' in fti.behaviors:
-            item = IPloneUser(context)
-            user = pm.getMemberById(item.user_name)
+        user = self.check_member()
         if user:
             biography = user.getProperty('description')
             if biography:
@@ -187,3 +183,56 @@ class View(dexterity.DisplayForm):
                 return None
         else:
             return None
+
+    def check_member(self):
+        """ Check if the employee is attached to a plone user.
+        """
+        context = self.context
+        id = context.getId()
+        pm = getToolByName(context, 'portal_membership')
+        pt = getToolByName(context, 'portal_types')
+        fti = pt['s17.employee']
+        user = pm.getMemberById(id)
+        if user:
+            return user
+        if 'collective.person.behaviors.user.IPloneUser' in fti.behaviors:
+            item = IPloneUser(context)
+            user = pm.getMemberById(item.user_name)
+        if user:
+            return user
+
+        return None
+
+
+@grok.subscribe(IEmployee, IObjectAddedEvent)
+def notifyUser(employee, event):
+    pm = getToolByName(employee, 'portal_membership')
+    pmd = getToolByName(employee, 'portal_memberdata')
+    if pm.getMemberById(employee.getId()) is not None:
+        return None
+    pr = getToolByName(employee, 'portal_registration')
+    pt = getToolByName(employee, 'portal_types')
+    fti = pt['s17.employee']
+    e_id = employee.getId()
+    passwd = 'changeme123'
+    fullname = employee.fullname
+    email = u'changeme@changeme.com'
+    if 'collective.person.behaviors.contact.IContactInfo' in fti.behaviors:
+        adapt_employee = IContactInfo(employee)
+        emails = adapt_employee.emails
+        if emails != []:
+            email = emails[0]['data']
+    norm = queryUtility(IIDNormalizer)
+    norm_name = norm.normalize(fullname)
+    properties = {
+        'username': norm_name,
+        # Full name must be always as utf-8 encoded
+        'fullname': fullname,
+        # Email adress is obligated. If contact info behavior is not
+        # activated we set a nonexistent email.
+        'email': email,
+    }
+    try:
+        member = pr.addMember(e_id, passwd, properties=properties)
+    except ValueError, e:
+        return None

@@ -33,3 +33,11 @@ msgstr "Retrato"
 #: s17/person/employee/content/employee.py:37
 msgid "Years of birthdays have to be greater than 1900."
 msgstr "Anos de aniversários tem que ser maior que 1900."
+
+#: s17/person/employee/content/employee_templates/view.pt:21
+msgid "Information"
+msgstr "Informaçao"
+
+#: s17/person/employee/content/employee_templates/view.pt:22
+msgid "There is not a Plone user attached to this employee."
+msgstr "Não existe nenhum usuário do Plone ligado a este empregado."
