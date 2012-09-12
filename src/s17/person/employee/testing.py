@@ -23,6 +23,7 @@ class Fixture(PloneSandboxLayer):
         pw.setDefaultChain('intranet_workflow')
         self.applyProfile(portal, 's17.person.employee:default')
         self.applyProfile(portal, 's17.person.employee:demo')
+        self.applyProfile(portal, 's17.person.employee:test')
 
 
 FIXTURE = Fixture()

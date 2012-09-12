@@ -14,5 +14,8 @@ def test_suite():
         layered(doctest.DocFileSuite('tests/test_birthdays.txt',
                                      package='s17.person.employee'),
                 layer=FUNCTIONAL_TESTING),
+        layered(doctest.DocFileSuite('tests/test_base_behaviors.txt',
+                                     package='s17.person.employee'),
+                layer=FUNCTIONAL_TESTING),
         ])
     return suite

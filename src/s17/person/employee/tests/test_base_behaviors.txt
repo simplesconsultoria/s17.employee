@@ -1,0 +1,57 @@
+Functional test:
+
+    >>> app = layer['app']
+    >>> portal = layer['portal']
+    >>> request = layer['request']
+
+    >>> from plone.testing.z2 import Browser
+    >>> browser = Browser(app)
+    >>> portalURL = portal.absolute_url()
+
+    >>> from plone.app.testing import SITE_OWNER_NAME, SITE_OWNER_PASSWORD
+    >>> browser.open(portalURL + '/login_form')
+    >>> browser.getControl(name='__ac_name').value = SITE_OWNER_NAME
+    >>> browser.getControl(name='__ac_password').value = SITE_OWNER_PASSWORD
+    >>> browser.getControl(name='submit').click()
+
+    >>> 'You are now logged in' in browser.contents
+    True
+
+Test behaviors:
+
+    Default schemata
+    >>> browser.open(portalURL + '/++add++s17.employee')
+    >>> browser.getControl(name='form.widgets.given_name').value = 'Name'
+    >>> browser.getControl(name='form.widgets.surname').value = 'Surname'
+    >>> browser.getControl(name='form.widgets.birthday-day').value = '15'
+    >>> browser.getControl(name='form.widgets.birthday-year').value = '1989'
+    >>> browser.getControl(name='form.widgets.IBasic.title').value = 'Name Surname'
+    >>> browser.getControl(name='form.widgets.IBasic.description').value = 'A description'
+    >>> browser.getControl(name='form.widgets.IContactInfo.emails.AA.widgets.data').value = 'something@somewhere.com'
+    >>> browser.getControl(name='form.widgets.IContactInfo.instant_messengers.AA.widgets.data').value = 'someone'
+    >>> browser.getControl(name='form.widgets.IContactInfo.telephones.AA.widgets.data').value = '+5511316.9876'
+    >>> browser.getControl(name='form.widgets.IPloneUser.user_name').value = SITE_OWNER_NAME
+
+    Categorization
+
+    >>> browser.getControl(name='form.widgets.ICategorization.subjects').value = 'Key words'
+
+    Settings
+
+    >>> browser.getControl(name='form.widgets.IExcludeFromNavigation.exclude_from_nav:list').value = True
+
+    Dates
+
+    >>> browser.getControl(name='form.widgets.IPublication.effective-day').value = '15'
+    >>> browser.getControl(name='form.widgets.IPublication.effective-year').value = '1989'
+    >>> browser.getControl(name='form.widgets.IPublication.expires-day').value = '15'
+    >>> browser.getControl(name='form.widgets.IPublication.expires-year').value = '2020'
+
+    Ownership
+
+    >>> browser.getControl(name='form.widgets.IOwnership.contributors').value = 'Other guys'
+    >>> browser.getControl(name='form.widgets.IOwnership.rights').value = 'Simples consultoria'
+
+    >>> browser.getControl(name='form.buttons.save').click()
+    >>> 'Item created' in browser.contents
+    True

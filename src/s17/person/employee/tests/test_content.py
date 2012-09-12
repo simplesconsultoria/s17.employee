@@ -119,11 +119,11 @@ class IntegrationTest(unittest.TestCase):
 
     def test_check_plone_user(self):
         pm = getToolByName(self.portal, 'portal_membership')
-        self.folder.invokeFactory('s17.employee', 'someone',
-                                   given_name='Someone', surname='Somebody')
-        e1 = self.folder['someone']
+        self.folder.invokeFactory('s17.employee', 'somebody-someone',
+                                   given_name='Somebody', surname='Someone')
+        e1 = self.folder['somebody-someone']
         e1.reindexObject()
-        user = pm.getMemberById('someone')
+        user = pm.getMemberById('somebody-someone')
         self.assertEqual(user.getId(),e1.getId())
 
 

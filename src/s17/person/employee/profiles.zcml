@@ -32,6 +32,14 @@
         i18n:attributes="title; description"
         />
 
+    <genericsetup:registerProfile
+        name="test"
+        title="s17.person.employee: Test profile"
+        directory="profiles/test"
+        description="Profile for test cases."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
     <genericsetup:importStep
         name="s17.person.employee-upgrades"
         title="s17.person.employee: Upgrades"
