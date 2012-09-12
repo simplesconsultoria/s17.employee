@@ -6,9 +6,15 @@ Because you have to know where your towel is.
 1.0a6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Adding tests for base behaviors of dexterity. [aleGpereira]
+
+- Fix problem with exclude from navigation. [aleGpereira]
+
+- Adding functionality of creating a plone user for an employee.
+
 - Config the product with upgrades. [aleGpereira]
 
-- Restrict year of birthday to be more than 1800. [aleGpereira]
+- Restrict year of birthday to be more than 1900. [aleGpereira]
 
 - Update translations [aleGpereira]
 
