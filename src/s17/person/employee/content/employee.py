@@ -9,10 +9,11 @@ from zope.component import queryUtility
 
 from Products.CMFCore.utils import getToolByName
 
+from plone.directives import dexterity
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from z3c.relationfield.schema import RelationList, RelationChoice
-from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from collective.person.behaviors.user import IPloneUser
 from collective.person.behaviors.contact import IContactInfo
