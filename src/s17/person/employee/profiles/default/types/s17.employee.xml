@@ -23,6 +23,7 @@
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
      <element value="plone.app.content.interfaces.INameFromTitle" />
+     <element value="collective.person.behaviors.contact.IContactInfo" />
   </property>
 
   <!-- View information -->
@@ -37,7 +38,7 @@
   <!-- Method aliases -->
   <alias from="(Default)" to="(dynamic view)" />
   <alias from="view" to="(selected layout)" />
-  <alias from="employee_edit" to="@@employee_edit" />
+  <alias from="edit" to="@@edit" />
   <alias from="sharing" to="@@sharing" />
 
   <!-- Actions -->
@@ -46,7 +47,7 @@
     <permission value="View" />
   </action>
   <action title="Edit" action_id="edit" category="object" condition_expr=""
-    url_expr="string:${object_url}/employee_edit" visible="True">
+    url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
 </object>

@@ -22,55 +22,87 @@
             <dd i18n:translate="">There is not a Plone user attached to this employee.</dd>
         </dl>
 
-        <div class="person-main-info">
-          <img class="image-left"
-              tal:define="picture nocall:context/picture"
-              tal:condition="nocall:picture"
-              tal:attributes="src string:${context/absolute_url}/@@images/picture/mini" />
-          <h1 class="documentFirstHeading">
+        <h1 id="employee_title" class="documentFirstHeading">
             <span tal:replace="context/title" />
             <span
                 tal:define="user_name python:view.w.get('IPloneUser.user_name');
                             user_name python:user_name and user_name.render().strip() or ''"
                 tal:condition="user_name"
                 tal:content="structure python:'(%s)' % user_name" />
-          </h1>
-          <div class="person-more-info"
-              tal:define="main_info python:('given_name', 'surname', 'IPloneUser.user_name', 'picture', 'birthday', 'gender')">
-            <label tal:content="view/w/gender/label"/>: <span tal:content="structure view/w/gender/render" /><br />
-            <label tal:content="view/w/birthday/label"/>: <span tal:content="structure view/w/birthday/render" /><br />
-            <tal:more-fields repeat="widget view/widgets/values">
-              <tal:field
-                  define="is_more python:widget.__name__ not in main_info
-                                         and widget.value not in ('', [], {});
-                          is_contact python:'IContactInfo' in widget.__name__"
-                  condition="python:is_more and not is_contact">
-                <label tal:content="structure widget/label" />:
-                <span tal:content="structure widget/render" /><br />
-              </tal:field>
-            </tal:more-fields>
-          </div>
-        </div>
+        </h1>
 
-        <div class="person-contact-info">
-          <tal:contact-fields
-              define="foo string:"
-              repeat="widget view/widgets/values">
-            <tal:field
-                define="is_contact python:'IContactInfo' in widget.__name__;
-                        render widget/render;
-                        has_info python:render.find('-2') < 0"
-                condition="python:is_contact and has_info">
-              <div class="visualClear" tal:condition="not:foo"><!-- --></div>
-              <h3 tal:condition="python:not foo" i18n:translate="">
-                Informações de contato
-              </h3>
-              <label tal:define="global foo string:bar"
-                  tal:content="structure widget/label" />:
-              <span tal:content="structure render" /><br />
-            </tal:field>
-          </tal:contact-fields>
-        </div>
+        <table id="employee-main-info">
+            
+            <tr class="subsection"
+                tal:condition="context/number">
+                <td  tal:content="view/w/number/label" /> <td id ="number" tal:content="context/number" />
+            </tr>
+            <tr class="subsection"
+                tal:condition="context/birthday">
+                <td  tal:content="view/w/birthday/label" /> <td id ="birthday" tal:content="structure view/w/birthday/render" />
+            </tr>
+            
+            <tr class="type_info">
+                <td colspan="2"><h3  > Contacts </h3></td>
+            </tr>
+
+            <tr class="subsection"
+                tal:condition="context/branch_line">
+                <td tal:content="view/w/branch_line/label" /> <td id="branch_line" tal:content="context/branch_line" />
+            </tr>
+            <tr id="emails" class="subsection"
+                tal:condition="python:view.w['IContactInfo.emails'].value!=[]">
+                <td  tal:content="view/w/IContactInfo.emails/label" />
+                <td id="email_list">
+                    <div tal:repeat="item view/w/IContactInfo.emails/value" >
+                        <span class="email_value" tal:content="python: item['data']" />
+                    </div>
+                </td>
+            </tr>
+            <tr id="ims" class="subsection"
+                tal:condition="python:view.w['IContactInfo.instant_messengers'].value!=[]">
+                <td  tal:content="python:view.w['IContactInfo.instant_messengers'].label + ':'" />
+                <td id="ims_list">
+                    <div tal:repeat="item view/w/IContactInfo.instant_messengers/value" >
+                        <span class="im_value" tal:content="python: item['data']" />
+                    </div>
+                </td>
+            </tr>
+            <tr id="telephones" class="subsection"
+                tal:condition="python:view.w['IContactInfo.telephones'].value!=[]">
+                <td  tal:content="python:view.w['IContactInfo.telephones'].label + ':'" />
+                <td id="telephone_list">
+                    <div tal:repeat="item view/w/IContactInfo.telephones/value" >
+                        <span class="telephone_value" tal:content="python: item['data']" />
+                    </div>
+                </td>
+            </tr>
+
+            <tr class="type_info">
+                <td colspan="2"><h3> Company Informations </h3></td>
+            </tr>
+            <tr class="subsection"
+                tal:condition="context/charge">
+                <td tal:content="view/w/charge/label" /> <td id ="charge" tal:content="structure view/w/charge/render" />
+            </tr>
+            <tr class="subsection"
+                tal:condition="context/rel_employee">
+                <td  tal:content="view/w/rel_employee/label" /> <td id ="rel_employee" tal:content="structure view/w/rel_employee/render"/>
+            </tr>
+            <tr class="subsection"
+                tal:condition="context/org_unit">
+                <td  tal:content="view/w/org_unit/label" /> <td id ="org_unit" tal:content="structure view/w/org_unit/render" />
+            </tr>
+            <tr class="subsection"
+                tal:condition="context/location">
+                <td  tal:content="view/w/location/label" /> <td id ="location" tal:content="structure view/w/location/render" />
+            </tr>
+        </table>
+
+        <img id="image"
+              tal:attributes="src string:${context/absolute_url}/@@images/picture/"
+          />
+
 
         <div class="field person-biography" tal:condition="view/biography">
           <h3 i18n:translate="">Biography</h3>

@@ -6,6 +6,13 @@ Because you have to know where your towel is.
 1.0a6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Update view template. [aleGpereira]
+
+- Removing fieldsets of collective.person behaviors. [aleGpereira]
+
+- Adding fields number, charge, organizational unit, branch line, location
+  and related employee. [aleGpereira]
+
 - Adding tests for base behaviors of dexterity. [aleGpereira]
 
 - Fix problem with exclude from navigation. [aleGpereira]
