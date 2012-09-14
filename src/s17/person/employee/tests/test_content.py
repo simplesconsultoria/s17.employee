@@ -3,7 +3,8 @@
 import unittest2 as unittest
 
 from zope.component import createObject
-from zope.component import queryUtility
+from zope.component import queryUtility, getUtility
+from zope.app.intid.interfaces import IIntIds
 
 from Products.CMFCore.utils import getToolByName
 
@@ -14,6 +15,8 @@ from plone.app.testing import login
 from plone.app.referenceablebehavior.referenceable import IReferenceable
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.uuid.interfaces import IAttributeUUID
+
+from z3c.relationfield.relation import RelationValue
 
 from collective.person.behaviors.user import IPloneUser
 
@@ -124,7 +127,18 @@ class IntegrationTest(unittest.TestCase):
         e1 = self.folder['somebody-someone']
         e1.reindexObject()
         user = pm.getMemberById('somebody-someone')
-        self.assertEqual(user.getId(),e1.getId())
+        self.assertEqual(user.getId(), e1.getId())
+
+    def test_return_bosses(self):
+        self.folder.invokeFactory('s17.employee', 'boss')
+        boss = self.folder['boss']
+        self.folder.invokeFactory('s17.employee', 'employee')
+        employee = self.folder['employee']
+        intids = getUtility(IIntIds)
+        reports_to = []
+        reports_to.append(RelationValue(intids.getId(boss)))
+        employee.reports_to = reports_to
+        self.assertEqual(employee.get_bosses()[0], boss)
 
 
 def test_suite():

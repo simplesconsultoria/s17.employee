@@ -31,7 +31,7 @@ class IEmployee(IPerson):
     """ A representation of a Employee
     """
 
-    number = schema.Int(
+    employee_id = schema.Int(
         title=_(u"Registration number"),
         required=True,
         )
@@ -42,7 +42,7 @@ class IEmployee(IPerson):
         required=False,
         )
 
-    org_unit = schema.TextLine(
+    ou = schema.TextLine(
         title=_(u"Organizational Unit"),
         description=_(u"To what unit this employee belong."),
         required=False,
@@ -54,13 +54,13 @@ class IEmployee(IPerson):
         required=False,
         )
 
-    branch_line = schema.Int(
+    extension = schema.Int(
         title=_(u"Extension line"),
-        description=_(u"Inside extension line to contact this employee."),
+        description=_(u"Internal extension line to contact this employee."),
         required=False,
         )
 
-    rel_employee = RelationList(
+    reports_to = RelationList(
         title=_(u'Boss', default=u'Boss'),
         default=[],
         value_type=RelationChoice(title=u"Boss",
@@ -103,6 +103,16 @@ class Employee(Person):
             surname = ''
         self.given_name = given_name
         self.surname = surname
+
+    def get_bosses(self):
+        """ Return the employee objects with this employee reports to.
+        """
+        results = []
+        if self.reports_to == []:
+            return results
+        for value in self.reports_to:
+            results.append(value.to_object)
+        return results
 
 
 class EmployeeEditForm(dexterity.EditForm):

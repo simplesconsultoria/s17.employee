@@ -34,8 +34,8 @@
         <table id="employee-main-info">
             
             <tr class="subsection"
-                tal:condition="context/number">
-                <td  tal:content="view/w/number/label" /> <td id ="number" tal:content="context/number" />
+                tal:condition="context/employee_id">
+                <td  tal:content="view/w/employee_id/label" /> <td id ="employee_id" tal:content="context/employee_id" />
             </tr>
             <tr class="subsection"
                 tal:condition="context/birthday">
@@ -47,8 +47,8 @@
             </tr>
 
             <tr class="subsection"
-                tal:condition="context/branch_line">
-                <td tal:content="view/w/branch_line/label" /> <td id="branch_line" tal:content="context/branch_line" />
+                tal:condition="context/extension">
+                <td tal:content="view/w/extension/label" /> <td id="extension" tal:content="context/extension" />
             </tr>
             <tr id="emails" class="subsection"
                 tal:condition="python:view.w['IContactInfo.emails'].value!=[]">
@@ -78,6 +78,8 @@
                 </td>
             </tr>
 
+            <p tal:content="context/get_bosses"/>
+
             <tr class="type_info">
                 <td colspan="2"><h3> Company Informations </h3></td>
             </tr>
@@ -86,12 +88,12 @@
                 <td tal:content="view/w/charge/label" /> <td id ="charge" tal:content="structure view/w/charge/render" />
             </tr>
             <tr class="subsection"
-                tal:condition="context/rel_employee">
-                <td  tal:content="view/w/rel_employee/label" /> <td id ="rel_employee" tal:content="structure view/w/rel_employee/render"/>
+                tal:condition="context/reports_to">
+                <td  tal:content="view/w/reports_to/label" /> <td id ="reports_to" tal:content="structure view/w/reports_to/render"/>
             </tr>
             <tr class="subsection"
-                tal:condition="context/org_unit">
-                <td  tal:content="view/w/org_unit/label" /> <td id ="org_unit" tal:content="structure view/w/org_unit/render" />
+                tal:condition="context/ou">
+                <td  tal:content="view/w/ou/label" /> <td id ="ou" tal:content="structure view/w/ou/render" />
             </tr>
             <tr class="subsection"
                 tal:condition="context/location">

@@ -10,8 +10,8 @@ Because you have to know where your towel is.
 
 - Removing fieldsets of collective.person behaviors. [aleGpereira]
 
-- Adding fields number, charge, organizational unit, branch line, location
-  and related employee. [aleGpereira]
+- Adding fields employee_id, charge, organizational unit, extension line, location
+  and reports_to employee. [aleGpereira]
 
 - Adding tests for base behaviors of dexterity. [aleGpereira]
 
