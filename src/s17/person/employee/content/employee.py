@@ -72,10 +72,8 @@ class IEmployee(IPerson):
     def restrict_year(data):
         ''' Check year of birthday. '''
         birthday = data.birthday
-        if birthday:
-            year = birthday.year
-            if year < 1901:
-                raise Invalid(_(u"Years of birthdays have to be greater" + \
+        if birthday and birthday.year < 1901:
+            raise Invalid(_(u"Years of birthdays have to be greater" + \
                                 " than 1900."))
 
 
@@ -153,6 +151,44 @@ class View(dexterity.DisplayForm):
             return user
 
         return None
+
+    def base_sorted_keys(self):
+        employee = self.context
+        result = []
+        if employee.employee_id:
+            result.append({'employee_id': employee.employee_id})
+        if employee.birthday:
+            result.append({'birthday': employee.birthday})
+        return result
+
+    def contact_sorted_keys(self):
+        employee = self.context
+        employee = IContactInfo(employee)
+        result = []
+        if employee.emails:
+            result.append({'IContactInfo.emails': \
+                            employee.emails})
+        if employee.instant_messengers:
+            result.append({'IContactInfo.instant_messengers': \
+                            employee.instant_messengers})
+        if employee.telephones:
+            result.append({'IContactInfo.telephones': \
+                            employee.telephones})
+        return result
+
+    def companyinfo_sorted_keys(self):
+        employee = self.context
+        result = []
+        if employee.charge:
+            result.append({'charge': employee.charge})
+        if employee.reports_to:
+            result.append({'reports_to': employee.reports_to})
+        if employee.ou:
+            result.append({'ou': employee.ou})
+        if employee.location:
+            result.append({'location': employee.location})
+
+        return result
 
 
 @grok.subscribe(IEmployee, IObjectAddedEvent)

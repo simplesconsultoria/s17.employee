@@ -31,73 +31,40 @@
                 tal:content="structure python:'(%s)' % user_name" />
         </h1>
 
-        <table id="employee-main-info">
-            
-            <tr class="subsection"
-                tal:condition="context/employee_id">
-                <td  tal:content="view/w/employee_id/label" /> <td id ="employee_id" tal:content="context/employee_id" />
+        <table id="employee-main-info"
+               tal:define="view_widget python:view.w;
+                           base_keys view/base_sorted_keys;
+                           contact_keys view/contact_sorted_keys;
+                           companyinfo_keys view/companyinfo_sorted_keys">
+
+            <tr tal:condition="python:base_keys" class="subsection" tal:repeat="field base_keys">
+                <td tal:define="key python:field.keys()[0]"
+                    tal:content="python:view_widget[key].label" />
+                <td tal:define="key python:field.keys()[0]" tal_attributes="id key"
+                    tal:content="structure python: view_widget[key].render()" />
             </tr>
-            <tr class="subsection"
-                tal:condition="context/birthday">
-                <td  tal:content="view/w/birthday/label" /> <td id ="birthday" tal:content="structure view/w/birthday/render" />
-            </tr>
-            
             <tr class="type_info">
-                <td colspan="2"><h3  > Contacts </h3></td>
+                <td colspan="2"><h3> Contacts </h3></td>
             </tr>
-
-            <tr class="subsection"
-                tal:condition="context/extension">
-                <td tal:content="view/w/extension/label" /> <td id="extension" tal:content="context/extension" />
-            </tr>
-            <tr id="emails" class="subsection"
-                tal:condition="python:view.w['IContactInfo.emails'].value!=[]">
-                <td  tal:content="view/w/IContactInfo.emails/label" />
-                <td id="email_list">
-                    <div tal:repeat="item view/w/IContactInfo.emails/value" >
-                        <span class="email_value" tal:content="python: item['data']" />
+            <tr tal:condition="python:contact_keys" class="subsection" tal:repeat="field contact_keys">
+                <td tal:define="key python:field.keys()[0]"
+                    tal:content="python:view_widget[key].label" />
+                <td tal:define="key python:field.keys()[0]" tal_attributes="id key">
+                    <div tal:repeat="item python:view_widget[key].value" >
+                        <span tal:content="python: item['data']" />
                     </div>
                 </td>
             </tr>
-            <tr id="ims" class="subsection"
-                tal:condition="python:view.w['IContactInfo.instant_messengers'].value!=[]">
-                <td  tal:content="python:view.w['IContactInfo.instant_messengers'].label + ':'" />
-                <td id="ims_list">
-                    <div tal:repeat="item view/w/IContactInfo.instant_messengers/value" >
-                        <span class="im_value" tal:content="python: item['data']" />
-                    </div>
-                </td>
-            </tr>
-            <tr id="telephones" class="subsection"
-                tal:condition="python:view.w['IContactInfo.telephones'].value!=[]">
-                <td  tal:content="python:view.w['IContactInfo.telephones'].label + ':'" />
-                <td id="telephone_list">
-                    <div tal:repeat="item view/w/IContactInfo.telephones/value" >
-                        <span class="telephone_value" tal:content="python: item['data']" />
-                    </div>
-                </td>
-            </tr>
-
-            <p tal:content="context/get_bosses"/>
 
             <tr class="type_info">
                 <td colspan="2"><h3> Company Informations </h3></td>
             </tr>
-            <tr class="subsection"
-                tal:condition="context/charge">
-                <td tal:content="view/w/charge/label" /> <td id ="charge" tal:content="structure view/w/charge/render" />
-            </tr>
-            <tr class="subsection"
-                tal:condition="context/reports_to">
-                <td  tal:content="view/w/reports_to/label" /> <td id ="reports_to" tal:content="structure view/w/reports_to/render"/>
-            </tr>
-            <tr class="subsection"
-                tal:condition="context/ou">
-                <td  tal:content="view/w/ou/label" /> <td id ="ou" tal:content="structure view/w/ou/render" />
-            </tr>
-            <tr class="subsection"
-                tal:condition="context/location">
-                <td  tal:content="view/w/location/label" /> <td id ="location" tal:content="structure view/w/location/render" />
+
+            <tr tal:condition="python:companyinfo_keys" class="subsection" tal:repeat="field companyinfo_keys">
+                <td tal:define="key python:field.keys()[0]"
+                    tal:content="python:view_widget[key].label" />
+                <td tal:define="key python:field.keys()[0]" tal_attributes="id key"
+                    tal:content="structure python: view_widget[key].render()" />
             </tr>
         </table>
 
