@@ -36,8 +36,8 @@ class IEmployee(IPerson):
         required=True,
         )
 
-    charge = schema.TextLine(
-        title=_(u"Charge"),
+    position = schema.TextLine(
+        title=_(u"Position"),
         description=_(u"Position in the company."),
         required=False,
         )
@@ -179,8 +179,8 @@ class View(dexterity.DisplayForm):
     def companyinfo_sorted_keys(self):
         employee = self.context
         result = []
-        if employee.charge:
-            result.append({'charge': employee.charge})
+        if employee.position:
+            result.append({'position': employee.position})
         if employee.reports_to:
             result.append({'reports_to': employee.reports_to})
         if employee.ou:

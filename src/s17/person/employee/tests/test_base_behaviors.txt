@@ -28,7 +28,7 @@ Test behaviors:
     >>> browser.getControl(name='form.widgets.IBasic.title').value = 'Name Surname'
     >>> browser.getControl(name='form.widgets.IBasic.description').value = 'A description'
     >>> browser.getControl(name='form.widgets.employee_id').value = '23423'
-    >>> browser.getControl(name='form.widgets.charge').value = 'Some position'
+    >>> browser.getControl(name='form.widgets.position').value = 'Some position'
     >>> browser.getControl(name='form.widgets.ou').value = 'Some where'
     >>> browser.getControl(name='form.widgets.location').value = 'Some location'
     >>> browser.getControl(name='form.widgets.extension').value = '3234'
