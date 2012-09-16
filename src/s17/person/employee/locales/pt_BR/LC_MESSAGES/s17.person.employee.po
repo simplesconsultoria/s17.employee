@@ -40,4 +40,44 @@ msgstr "Informaçao"
 
 #: s17/person/employee/content/employee_templates/view.pt:22
 msgid "There is not a Plone user attached to this employee."
-msgstr "Não existe nenhum usuário do Plone ligado a este empregado."
+msgstr "Não existe nenhum usuário do Plone ligado a este funcionário."
+
+#: s17/person/employee/content/employee.py
+msgid "Charge"
+msgstr "Cargo"
+
+#: s17/person/employee/content/employee.py
+msgid "Position in the company."
+msgstr "Posição na empresa"
+
+#: s17/person/employee/content/employee.py
+msgid "Organizational Unit"
+msgstr "Unidade organizacional"
+
+#: s17/person/employee/content/employee.py
+msgid "To what unit this employee belong."
+msgstr "Para qual unidade este funcionário pertence."
+
+#: s17/person/employee/content/employee.py
+msgid "Location"
+msgstr "Localização"
+
+#: s17/person/employee/content/employee.py
+msgid "Information of room/desk."
+msgstr "Informação de sala/escritório"
+
+#: s17/person/employee/content/employee.py
+msgid "Extension line"
+msgstr "Ramal"
+
+#: s17/person/employee/content/employee.py
+msgid "Inside extension line to contact this employee."
+msgstr "Dentro na empresa linha de extensão para contatar este funcionário."
+
+#: s17/person/employee/content/employee.py
+msgid "Registration number"
+msgstr "Matrícula"
+
+#: s17/person/employee/content/employee.py
+msgid "Boss"
+msgstr "Gestor"

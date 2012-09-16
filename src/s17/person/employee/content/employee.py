@@ -2,20 +2,18 @@
 
 from five import grok
 
+from zope import schema
 from zope.interface import Invalid, invariant
 from zope.app.container.interfaces import IObjectAddedEvent
 from zope.component import queryUtility
 
-from z3c.form import field
-
 from Products.CMFCore.utils import getToolByName
-from Products.statusmessages.interfaces import IStatusMessage
 
-from plone.autoform.utils import processFieldMoves, processFields
-from plone.behavior.interfaces import IBehaviorAssignable
 from plone.directives import dexterity
-from plone.z3cform.fieldsets.group import GroupFactory
 from plone.i18n.normalizer.interfaces import IIDNormalizer
+from plone.formwidget.contenttree import ObjPathSourceBinder
+
+from z3c.relationfield.schema import RelationList, RelationChoice
 
 from collective.person.behaviors.user import IPloneUser
 from collective.person.behaviors.contact import IContactInfo
@@ -33,18 +31,57 @@ class IEmployee(IPerson):
     """ A representation of a Employee
     """
 
+    employee_id = schema.Int(
+        title=_(u"Registration number"),
+        required=True,
+        )
+
+    position = schema.TextLine(
+        title=_(u"Position"),
+        description=_(u"Position in the company."),
+        required=False,
+        )
+
+    ou = schema.TextLine(
+        title=_(u"Organizational Unit"),
+        description=_(u"To what unit this employee belong."),
+        required=False,
+        )
+
+    location = schema.TextLine(
+        title=_(u"Location"),
+        description=_(u"Information of room/desk."),
+        required=False,
+        )
+
+    extension = schema.Int(
+        title=_(u"Extension line"),
+        description=_(u"Internal extension line to contact this employee."),
+        required=False,
+        )
+
+    reports_to = RelationList(
+        title=_(u'Boss', default=u'Boss'),
+        default=[],
+        value_type=RelationChoice(title=u"Boss",
+                      source=ObjPathSourceBinder(portal_type='s17.employee')),
+        required=False,
+        )
+
     @invariant
     def restrict_year(data):
         ''' Check year of birthday. '''
         birthday = data.birthday
-        year = birthday.year
-        if year < 1901:
-            raise Invalid(_(u"Years of birthdays have to be greater than 1900."))
+        if birthday and birthday.year < 1901:
+            raise Invalid(_(u"Years of birthdays have to be greater" + \
+                                " than 1900."))
 
 
 class Employee(Person):
     """ Implementation of IEmployee
     """
+    grok.implements(IEmployee)
+
     def setTitle(self, value):
         ''' Membership tool expects a setTitle '''
         title = value.split(' ')
@@ -65,107 +102,19 @@ class Employee(Person):
         self.given_name = given_name
         self.surname = surname
 
+    def get_bosses(self):
+        """ Return the employee objects with this employee reports to.
+        """
+        results = []
+        if self.reports_to == []:
+            return results
+        for value in self.reports_to:
+            results.append(value.to_object)
+        return results
+
 
 class EmployeeEditForm(dexterity.EditForm):
     grok.context(IEmployee)
-    grok.name('employee_edit')
-
-    autoGroups = True
-
-    def is_from_person(self, schema):
-        """ Check if the behavior belongs to the package collective.person.
-        """
-        assignable = IBehaviorAssignable(self.getContent())
-        result = False
-        for behavior in assignable.enumerateBehaviors():
-            if (behavior.interface.getName() == schema.getName()) and \
-               (behavior.interface.__module__.find('collective.person') == 0):
-                result = behavior
-        return result
-
-    def updateFieldsFromSchemata(self):
-        """ Override method especific for additional schematas based of
-        collective.person behaviors.
-        """
-
-        # If the form is called from the ++widget++ traversal namespace,
-        # we won't have a user yet. In this case, we can't perform permission
-        # checks.
-
-        have_user = bool(self.request.get('AUTHENTICATED_USER', False))
-
-        # Turn fields into an instance variable, since we will be modifying it
-        self.fields = field.Fields(self.fields)
-
-        # Copy groups to an instance variable and ensure that we have
-        # the more mutable factories, rather than 'Group' subclasses
-
-        groups = []
-
-        for g in self.groups:
-            group_name = getattr(g, '__name__', g.label)
-            fieldset_group = GroupFactory(group_name,
-                                          field.Fields(g.fields),
-                                          g.label,
-                                          getattr(g, 'description', None))
-            groups.append(fieldset_group)
-
-        # Copy to instance variable only after we have potentially read from
-        # the class
-        self.groups = groups
-
-        prefixes = {}
-
-        # Set up all widgets, modes, omitted fields and fieldsets
-        if self.schema is not None:
-            processFields(self, self.schema, permissionChecks=have_user)
-            for schema in self.additionalSchemata:
-
-                # Find the prefix to use for this form and cache for next round
-                prefix = self.getPrefix(schema)
-                if prefix and prefix in prefixes:
-                    prefix = schema.__identifier__
-                prefixes[schema] = prefix
-
-                # By default, there's no default group, i.e. fields go
-                # straight into the default fieldset
-
-                defaultGroup = None
-
-                # Create groups from schemata if requested and set default
-                # group
-                behavior = self.is_from_person(schema)
-                if self.autoGroups and behavior:
-                    group_name = behavior.title
-
-                    # Look for group - note that previous processFields
-                    # may have changed the groups list, so we can't easily
-                    # store this in a dict.
-                    found = False
-                    for g in self.groups:
-                        if group_name == getattr(g, '__name__', g.label):
-                            found = True
-                            break
-
-                    if not found:
-                        fieldset_group = GroupFactory(group_name,
-                                                      field.Fields(),
-                                                      group_name)
-                        self.groups.append(fieldset_group)
-
-                    defaultGroup = group_name
-
-                processFields(self, schema, prefix=prefix, \
-                              defaultGroup=defaultGroup, \
-                              permissionChecks=have_user)
-
-        # Then process relative field movements. The base schema is processed
-        # last to allow it to override any movements made in additional
-        # schemata.
-        if self.schema is not None:
-            for schema in self.additionalSchemata:
-                processFieldMoves(self, schema, prefix=prefixes[schema])
-            processFieldMoves(self, self.schema)
 
 
 class View(dexterity.DisplayForm):
@@ -203,11 +152,48 @@ class View(dexterity.DisplayForm):
 
         return None
 
+    def base_sorted_keys(self):
+        employee = self.context
+        result = []
+        if employee.employee_id:
+            result.append({'employee_id': employee.employee_id})
+        if employee.birthday:
+            result.append({'birthday': employee.birthday})
+        return result
+
+    def contact_sorted_keys(self):
+        employee = self.context
+        employee = IContactInfo(employee)
+        result = []
+        if employee.emails:
+            result.append({'IContactInfo.emails': \
+                            employee.emails})
+        if employee.instant_messengers:
+            result.append({'IContactInfo.instant_messengers': \
+                            employee.instant_messengers})
+        if employee.telephones:
+            result.append({'IContactInfo.telephones': \
+                            employee.telephones})
+        return result
+
+    def companyinfo_sorted_keys(self):
+        employee = self.context
+        result = []
+        if employee.position:
+            result.append({'position': employee.position})
+        if employee.reports_to:
+            result.append({'reports_to': employee.reports_to})
+        if employee.ou:
+            result.append({'ou': employee.ou})
+        if employee.location:
+            result.append({'location': employee.location})
+
+        return result
+
 
 @grok.subscribe(IEmployee, IObjectAddedEvent)
 def notifyUser(employee, event):
     pm = getToolByName(employee, 'portal_membership')
-    pmd = getToolByName(employee, 'portal_memberdata')
     if pm.getMemberById(employee.getId()) is not None:
         return None
     pr = getToolByName(employee, 'portal_registration')
