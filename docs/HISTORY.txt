@@ -6,6 +6,8 @@ Because you have to know where your towel is.
 1.0a6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Adding behavior of creating a plone user for an employee. [aleGpereira]
+
 - Update view template. [aleGpereira]
 
 - Removing fieldsets of collective.person behaviors. [aleGpereira]
@@ -16,8 +18,6 @@ Because you have to know where your towel is.
 - Adding tests for base behaviors of dexterity. [aleGpereira]
 
 - Fix problem with exclude from navigation. [aleGpereira]
-
-- Adding functionality of creating a plone user for an employee.
 
 - Config the product with upgrades. [aleGpereira]
 
