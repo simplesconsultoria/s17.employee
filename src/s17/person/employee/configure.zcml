@@ -14,6 +14,7 @@
     <grok:grok package="." />
 
     <include file="profiles.zcml"/>
+    <include package=".behaviors"/>
 
     <!-- Permissions -->
     <permission
