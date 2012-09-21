@@ -10,9 +10,9 @@ from Products.CMFCore.utils import getToolByName
 from plone.directives import form
 from plone.i18n.normalizer.interfaces import IIDNormalizer
 
-from collective.person.behaviors.contact import IContactInfo
+from s17.person.behaviors.contact import IContactInfo
 
-from s17.person.employee.content.employee import IEmployee
+from s17.employee.content.employee import IEmployee
 
 
 class IMemberCreation(form.Schema):
@@ -34,7 +34,7 @@ def notifyUser(employee, event):
     passwd = 'changeme123'
     fullname = employee.fullname
     email = u'changeme@changeme.com'
-    if 'collective.person.behaviors.contact.IContactInfo' in fti.behaviors:
+    if 's17.person.behaviors.contact.IContactInfo' in fti.behaviors:
         contact_adapt_employee = IContactInfo(employee)
         emails = contact_adapt_employee.emails
         if emails != []:

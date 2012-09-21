@@ -6,6 +6,8 @@ Because you have to know where your towel is.
 1.0a6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Rename package from s17.person.employee to s17.employee. [hvelarde]
+
 - Adding behavior of creating a plone user for an employee. [aleGpereira]
 
 - Update view template. [aleGpereira]

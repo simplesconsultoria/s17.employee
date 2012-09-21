@@ -19,11 +19,11 @@ from plone.uuid.interfaces import IAttributeUUID
 
 from z3c.relationfield.relation import RelationValue
 
-from collective.person.behaviors.contact import IContactInfo
+from s17.person.behaviors.contact import IContactInfo
 
-from s17.person.employee.content.employee import IEmployee
+from s17.employee.content.employee import IEmployee
 
-from s17.person.employee.testing import INTEGRATION_TESTING
+from s17.employee.testing import INTEGRATION_TESTING
 
 
 class IntegrationTest(unittest.TestCase):
