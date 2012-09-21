@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-06 18:40+0000\n"
+"Project-Id-Version: s17.employee 1.0\n"
+"POT-Creation-Date: 2012-09-21 19:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,21 +12,80 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: s17.employee\n"
 
-#: s17/person/employee/profiles/default/types/s17.employee.xml
+#: s17/employee/profiles/default/types/Employee.xml
+#: s17/employee/profiles/test/types/Employee.xml
 msgid "An employee"
 msgstr ""
 
-#: s17/person/employee/browser/employee_templates/view.pt:65
+#: s17/employee/content/employee_templates/view.pt:77
 msgid "Biography"
 msgstr ""
 
-#: s17/person/employee/profiles/default/types/s17.employee.xml
+#. Default: "Boss"
+#: s17/employee/content/employee.py:61
+msgid "Boss"
+msgstr ""
+
+#: s17/employee/content/employee_templates/view.pt:60
+msgid "Company Information"
+msgstr ""
+
+#: s17/employee/content/employee_templates/view.pt:47
+msgid "Contacts"
+msgstr ""
+
+#: s17/employee/profiles/default/types/Employee.xml
+#: s17/employee/profiles/test/types/Employee.xml
 msgid "Employee"
 msgstr ""
 
-#: s17/person/employee/browser/employee_templates/view.pt:50
-msgid "Portrait"
+#: s17/employee/content/employee.py:55
+msgid "Extension line"
+msgstr ""
+
+#: s17/employee/content/employee_templates/view.pt:21
+msgid "Information"
+msgstr ""
+
+#: s17/employee/content/employee.py:50
+msgid "Information of room/desk."
+msgstr ""
+
+#: s17/employee/content/employee.py:56
+msgid "Internal extension line to contact this employee."
+msgstr ""
+
+#: s17/employee/content/employee.py:49
+msgid "Location"
+msgstr ""
+
+#: s17/employee/content/employee.py:43
+msgid "Organizational Unit"
+msgstr ""
+
+#: s17/employee/content/employee.py:37
+msgid "Position"
+msgstr ""
+
+#: s17/employee/content/employee.py:38
+msgid "Position in the company."
+msgstr ""
+
+#: s17/employee/content/employee.py:32
+msgid "Registration number"
+msgstr ""
+
+#: s17/employee/content/employee_templates/view.pt:22
+msgid "There is not a Plone user attached to this employee."
+msgstr ""
+
+#: s17/employee/content/employee.py:44
+msgid "To what unit this employee belong."
+msgstr ""
+
+#: s17/employee/content/employee.py:73
+msgid "Years of birthdays have to be greater than 1900."
 msgstr ""
 

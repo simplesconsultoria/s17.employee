@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-08-06 18:40+0000\n"
-"PO-Revision-Date: 2012-07-11 20:26-0300\n"
-"Last-Translator: Gustavo Lepri <lepri@simplesconsultoria.com.br>\n"
+"Project-Id-Version: s17.employee 1.0\n"
+"POT-Creation-Date: 2012-09-21 19:40+0000\n"
+"PO-Revision-Date: 2012-09-21 16:45-0300\n"
+"Last-Translator: Héctor Velarde <hector.velarde@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -12,72 +12,80 @@ msgstr ""
 "Language-Code: pt-BR\n"
 "Language-Name: Portuguese\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: s17.employee\n"
 
-#: s17/person/employee/profiles/default/types/s17.employee.xml
+#: s17/employee/profiles/default/types/Employee.xml
+#: s17/employee/profiles/test/types/Employee.xml
 msgid "An employee"
 msgstr "Um funcionário"
 
-#: s17/person/employee/employee_templates/view.pt:65
+#: s17/employee/content/employee_templates/view.pt:77
 msgid "Biography"
 msgstr "Currículo"
 
-#: s17/person/employee/profiles/default/types/s17.employee.xml
+#. Default: "Boss"
+#: s17/employee/content/employee.py:61
+msgid "Boss"
+msgstr "Gestor"
+
+#: s17/employee/content/employee_templates/view.pt:60
+msgid "Company Information"
+msgstr "Informação da empresa"
+
+#: s17/employee/content/employee_templates/view.pt:47
+msgid "Contacts"
+msgstr "Contatos"
+
+#: s17/employee/profiles/default/types/Employee.xml
+#: s17/employee/profiles/test/types/Employee.xml
 msgid "Employee"
 msgstr "Funcionário"
 
-#: s17/person/employee/employee_templates/view.pt:50
-msgid "Portrait"
-msgstr "Retrato"
-
-#: s17/person/employee/content/employee.py:37
-msgid "Years of birthdays have to be greater than 1900."
-msgstr "Anos de aniversários tem que ser maior que 1900."
-
-#: s17/person/employee/content/employee_templates/view.pt:21
-msgid "Information"
-msgstr "Informaçao"
-
-#: s17/person/employee/content/employee_templates/view.pt:22
-msgid "There is not a Plone user attached to this employee."
-msgstr "Não existe nenhum usuário do Plone ligado a este funcionário."
-
-#: s17/person/employee/content/employee.py
-msgid "Charge"
-msgstr "Cargo"
-
-#: s17/person/employee/content/employee.py
-msgid "Position in the company."
-msgstr "Posição na empresa"
-
-#: s17/person/employee/content/employee.py
-msgid "Organizational Unit"
-msgstr "Unidade organizacional"
-
-#: s17/person/employee/content/employee.py
-msgid "To what unit this employee belong."
-msgstr "Para qual unidade este funcionário pertence."
-
-#: s17/person/employee/content/employee.py
-msgid "Location"
-msgstr "Localização"
-
-#: s17/person/employee/content/employee.py
-msgid "Information of room/desk."
-msgstr "Informação de sala/escritório"
-
-#: s17/person/employee/content/employee.py
+#: s17/employee/content/employee.py:55
 msgid "Extension line"
 msgstr "Ramal"
 
-#: s17/person/employee/content/employee.py
-msgid "Inside extension line to contact this employee."
-msgstr "Dentro na empresa linha de extensão para contatar este funcionário."
+#: s17/employee/content/employee_templates/view.pt:21
+msgid "Information"
+msgstr "Informação"
 
-#: s17/person/employee/content/employee.py
+#: s17/employee/content/employee.py:50
+msgid "Information of room/desk."
+msgstr "Informação de sala/mesa de trabalho."
+
+#: s17/employee/content/employee.py:56
+msgid "Internal extension line to contact this employee."
+msgstr "Ramal do funcionário"
+
+#: s17/employee/content/employee.py:49
+msgid "Location"
+msgstr "Localização"
+
+#: s17/employee/content/employee.py:43
+msgid "Organizational Unit"
+msgstr "Unidade organizacional"
+
+#: s17/employee/content/employee.py:37
+msgid "Position"
+msgstr "Posição"
+
+#: s17/employee/content/employee.py:38
+msgid "Position in the company."
+msgstr "Posição na empresa"
+
+#: s17/employee/content/employee.py:32
 msgid "Registration number"
 msgstr "Matrícula"
 
-#: s17/person/employee/content/employee.py
-msgid "Boss"
-msgstr "Gestor"
+#: s17/employee/content/employee_templates/view.pt:22
+msgid "There is not a Plone user attached to this employee."
+msgstr "Não existe nenhum usuário do Plone ligado a este funcionário."
+
+#: s17/employee/content/employee.py:44
+msgid "To what unit this employee belong."
+msgstr "Para qual unidade este funcionário pertence."
+
+#: s17/employee/content/employee.py:73
+msgid "Years of birthdays have to be greater than 1900."
+msgstr "Anos de aniversários tem que ser maior que 1900."
+

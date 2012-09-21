@@ -44,7 +44,7 @@
                     tal:content="structure python: view_widget[key].render()" />
             </tr>
             <tr class="type_info">
-                <td colspan="2"><h3> Contacts </h3></td>
+                <td colspan="2"><h3 i18n:translate=""> Contacts </h3></td>
             </tr>
             <tr tal:condition="python:contact_keys" class="subsection" tal:repeat="field contact_keys">
                 <td tal:define="key python:field.keys()[0]"
@@ -57,7 +57,7 @@
             </tr>
 
             <tr class="type_info">
-                <td colspan="2"><h3> Company Informations </h3></td>
+                <td colspan="2"><h3 i18n:translate=""> Company Information </h3></td>
             </tr>
 
             <tr tal:condition="python:companyinfo_keys" class="subsection" tal:repeat="field companyinfo_keys">
