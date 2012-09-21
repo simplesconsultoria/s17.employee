@@ -5,12 +5,9 @@ from five import grok
 from zope import schema
 from zope.interface import Invalid, invariant
 
-from zope.component import queryUtility
-
 from Products.CMFCore.utils import getToolByName
 
 from plone.directives import dexterity
-from plone.i18n.normalizer.interfaces import IIDNormalizer
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from z3c.relationfield.schema import RelationList, RelationChoice
@@ -64,7 +61,7 @@ class IEmployee(IPerson):
         title=_(u'Boss', default=u'Boss'),
         default=[],
         value_type=RelationChoice(title=u"Boss",
-                      source=ObjPathSourceBinder(portal_type='s17.employee')),
+                      source=ObjPathSourceBinder(portal_type='Employee')),
         required=False,
         )
 
@@ -140,7 +137,7 @@ class View(dexterity.DisplayForm):
         id = context.getId()
         pm = getToolByName(context, 'portal_membership')
         pt = getToolByName(context, 'portal_types')
-        fti = pt['s17.employee']
+        fti = pt['Employee']
         user = pm.getMemberById(id)
         if user:
             return user

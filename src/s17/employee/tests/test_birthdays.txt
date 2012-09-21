@@ -19,7 +19,7 @@ Functional test:
 
 Test year of birthday:
 
-    >>> browser.open(portalURL + '/++add++s17.employee')
+    >>> browser.open(portalURL + '/++add++Employee')
     >>> browser.getControl(name='form.widgets.given_name').value = 'Name'
     >>> browser.getControl(name='form.widgets.surname').value = 'Surname'
     >>> browser.getControl(name='form.widgets.birthday-day').value = '15'

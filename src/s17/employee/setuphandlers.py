@@ -71,8 +71,7 @@ def demo_steps(context):
         create_user(user['name'], user['password'], portal)
 
     # Set behaviors to employee
-    fti = queryUtility(IDexterityFTI,
-                        name='s17.employee')
+    fti = queryUtility(IDexterityFTI, name='Employee')
     behaviors = fti.behaviors + \
                 tuple(['s17.person.behaviors.user.IPloneUser',
                 's17.person.behaviors.contact.IContactInfo'])
@@ -85,7 +84,7 @@ def demo_steps(context):
         image = os.path.join(os.path.dirname(__file__), 'profiles', 'demo',
                              'images', 'picture%s.png' % user['number'])
         data = getFile(image).read()
-        folder.invokeFactory('s17.employee', employee,
+        folder.invokeFactory('Employee', employee,
             birthday=datetime.date(datetime(birthday[0], birthday[1],
                                    birthday[2])),
             picture=NamedImage(data),
@@ -140,7 +139,7 @@ def use_memberarea(context):
         return
     portal = context.getSite()
     mt = getToolByName(portal, 'portal_membership')
-    mt.memberarea_type = 's17.employee'
+    mt.memberarea_type = 'Employee'
     mt.membersfolder_id = 'Members'
     mt.memberareaCreationFlag = True
 

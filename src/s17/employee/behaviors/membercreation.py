@@ -26,7 +26,7 @@ def notifyUser(employee, event):
     pm = getToolByName(employee, 'portal_membership')
     pr = getToolByName(employee, 'portal_registration')
     pt = getToolByName(employee, 'portal_types')
-    fti = pt['s17.employee']
+    fti = pt['Employee']
     if (pm.getMemberById(employee.getId()) is not None) or \
         IMemberCreation.__identifier__ not in fti.behaviors:
         return None
