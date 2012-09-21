@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    i18n_domain="s17.person.employee">
+
+    <include package="plone.behavior" file="meta.zcml" />
+
+    <include package="plone.directives.form" file="meta.zcml" />
+    <include package="plone.directives.form" />
+
+    <plone:behavior
+        title="Member creation"
+        description="Creates a plone member user for a employee when is created."
+        provides=".membercreation.IMemberCreation"
+        />
+
+</configure>

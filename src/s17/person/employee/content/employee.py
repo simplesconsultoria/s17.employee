@@ -4,7 +4,7 @@ from five import grok
 
 from zope import schema
 from zope.interface import Invalid, invariant
-from zope.app.container.interfaces import IObjectAddedEvent
+
 from zope.component import queryUtility
 
 from Products.CMFCore.utils import getToolByName
@@ -191,34 +191,3 @@ class View(dexterity.DisplayForm):
         return result
 
 
-@grok.subscribe(IEmployee, IObjectAddedEvent)
-def notifyUser(employee, event):
-    pm = getToolByName(employee, 'portal_membership')
-    if pm.getMemberById(employee.getId()) is not None:
-        return None
-    pr = getToolByName(employee, 'portal_registration')
-    pt = getToolByName(employee, 'portal_types')
-    fti = pt['s17.employee']
-    e_id = employee.getId()
-    passwd = 'changeme123'
-    fullname = employee.fullname
-    email = u'changeme@changeme.com'
-    if 'collective.person.behaviors.contact.IContactInfo' in fti.behaviors:
-        adapt_employee = IContactInfo(employee)
-        emails = adapt_employee.emails
-        if emails != []:
-            email = emails[0]['data']
-    norm = queryUtility(IIDNormalizer)
-    norm_name = norm.normalize(fullname)
-    properties = {
-        'username': norm_name,
-        # Full name must be always as utf-8 encoded
-        'fullname': fullname,
-        # Email adress is obligated. If contact info behavior is not
-        # activated we set a nonexistent email.
-        'email': email,
-    }
-    try:
-        member = pr.addMember(e_id, passwd, properties=properties)
-    except ValueError, e:
-        return None
