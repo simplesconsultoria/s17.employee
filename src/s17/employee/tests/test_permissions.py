@@ -18,7 +18,3 @@ class PermissionsTest(unittest.TestCase):
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]
         self.assertListEqual(roles, expected)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

@@ -29,7 +29,7 @@ class MemberAreaTest(unittest.TestCase):
         self.portal.logged_in()
         self.failIfEqual(self.membership.getHomeFolder(), None)
         home = self.membership.getHomeFolder()
-        self.assertEqual(home.portal_type, 's17.employee')
+        self.assertEqual(home.portal_type, 'Employee')
 
     def test_areatitle(self):
         self.portal.logged_in()
@@ -37,7 +37,3 @@ class MemberAreaTest(unittest.TestCase):
         self.assertEqual(home.given_name, 'test_user_1_')
         self.assertEqual(home.surname, '')
         self.assertEqual(home.fullname, 'test_user_1_ ')
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)

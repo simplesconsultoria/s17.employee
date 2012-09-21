@@ -38,33 +38,33 @@ class IntegrationTest(unittest.TestCase):
         login(self.portal, TEST_USER_NAME)
 
     def test_adding(self):
-        self.folder.invokeFactory('s17.employee', 'e1')
+        self.folder.invokeFactory('Employee', 'e1')
         e1 = self.folder['e1']
         self.assertTrue(IEmployee.providedBy(e1))
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='s17.employee')
+        fti = queryUtility(IDexterityFTI, name='Employee')
         self.assertNotEquals(None, fti)
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='s17.employee')
+        fti = queryUtility(IDexterityFTI, name='Employee')
         schema = fti.lookupSchema()
         self.assertEqual(IEmployee, schema)
 
     def test_is_referenceable(self):
-        self.folder.invokeFactory('s17.employee', 'e1')
+        self.folder.invokeFactory('Employee', 'e1')
         e1 = self.folder['e1']
         self.assertTrue(IAttributeUUID.providedBy(e1))
         self.assertTrue(IReferenceable.providedBy(e1))
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='s17.employee')
+        fti = queryUtility(IDexterityFTI, name='Employee')
         factory = fti.factory
         new_object = createObject(factory)
         self.assertTrue(IEmployee.providedBy(new_object))
 
     def test_setTitle(self):
-        self.folder.invokeFactory('s17.employee', 'e1')
+        self.folder.invokeFactory('Employee', 'e1')
         e1 = self.folder['e1']
         # Simple name and surname
         e1.setTitle('James Kirk')
@@ -95,7 +95,7 @@ class IntegrationTest(unittest.TestCase):
                       "description": u"Just a user"}
         user.setMemberProperties(mapping=properties)
 
-        self.folder.invokeFactory('s17.employee', TEST_USER_ID)
+        self.folder.invokeFactory('Employee', TEST_USER_ID)
         e1 = self.folder[TEST_USER_ID]
 
         # We test the view method
@@ -110,7 +110,7 @@ class IntegrationTest(unittest.TestCase):
         user.setMemberProperties(mapping=properties)
 
         # We config the employee and attach a plone user for it
-        self.folder.invokeFactory('s17.employee', 'e1')
+        self.folder.invokeFactory('Employee', 'e1')
         e1 = self.folder['e1']
         e1 = IPloneUser(e1)
         e1.user_name = TEST_USER_ID
@@ -121,16 +121,12 @@ class IntegrationTest(unittest.TestCase):
         self.assertEqual(view.biography(), u"Just a user")
 
     def test_return_bosses(self):
-        self.folder.invokeFactory('s17.employee', 'boss')
+        self.folder.invokeFactory('Employee', 'boss')
         boss = self.folder['boss']
-        self.folder.invokeFactory('s17.employee', 'employee')
+        self.folder.invokeFactory('Employee', 'employee')
         employee = self.folder['employee']
         intids = getUtility(IIntIds)
         reports_to = []
         reports_to.append(RelationValue(intids.getId(boss)))
         employee.reports_to = reports_to
         self.assertEqual(employee.get_bosses()[0], boss)
-
-
-def test_suite():
-    return unittest.defaultTestLoader.loadTestsFromName(__name__)
