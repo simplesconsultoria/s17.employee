@@ -3,7 +3,7 @@
 import os
 from setuptools import setup, find_packages
 
-version = '1.0a6.dev0'
+version = '1.0b1'
 description = "A package containing a Dexterity content type and behaviors \
 to represent an Employe on a Plone site."
 long_description = open("README.txt").read() + "\n" + \
