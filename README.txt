@@ -10,7 +10,7 @@ Life, the Universe, and Everything
 A package containing a Dexterity content type and behaviors to represent an
 Employe as a content in a Plone site.
 
-This package depends on `collective.person`_.
+This package depends on `s17.person`_.
 
 Don't panic
 -----------
@@ -42,6 +42,6 @@ Mostly Harmless
 
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
-.. _`collective.person`: https://github.com/simplesconsultoria/collective.person
+.. _`s17.person`: https://github.com/simplesconsultoria/s17.person
 .. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.employee/issues
 

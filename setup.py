@@ -45,7 +45,7 @@ setup(name='s17.employee',
       install_requires=[
         'setuptools',
         'Products.CMFPlone>=4.1',
-        'collective.person>=1.0a4',
+        's17.person',
         ],
       extras_require={
         'test': ['plone.app.testing'],

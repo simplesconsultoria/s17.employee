@@ -10,7 +10,7 @@ def fromZero(context):
     ''' Upgrade from Zero to version 1000
     '''
     qi = getToolByName(context, 'portal_quickinstaller')
-    qi.installProduct('collective.person',
+    qi.installProduct('s17.person',
                       locked=0,
                       hidden=0,
-                      profile='collective.person:default')
+                      profile='s17.person:default')

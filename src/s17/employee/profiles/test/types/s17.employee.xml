@@ -25,9 +25,9 @@
      <element value="plone.app.content.interfaces.INameFromTitle" />
      <element value="plone.app.dexterity.behaviors.metadata.IBasic" />
      <element value="plone.app.dexterity.behaviors.metadata.ICategorization" />
-     <element value="collective.person.behaviors.contact.IContactInfo" />
+     <element value="s17.person.behaviors.contact.IContactInfo" />
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation" />
-     <element value="collective.person.behaviors.user.IPloneUser" />
+     <element value="s17.person.behaviors.user.IPloneUser" />
      <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
   </property>

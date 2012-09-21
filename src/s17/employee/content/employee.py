@@ -15,10 +15,10 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from z3c.relationfield.schema import RelationList, RelationChoice
 
-from collective.person.behaviors.user import IPloneUser
-from collective.person.behaviors.contact import IContactInfo
-from collective.person.content.person import IPerson
-from collective.person.content.person import Person
+from s17.person.behaviors.user import IPloneUser
+from s17.person.behaviors.contact import IContactInfo
+from s17.person.content.person import IPerson
+from s17.person.content.person import Person
 
 from s17.employee import MessageFactory as _
 
@@ -144,7 +144,7 @@ class View(dexterity.DisplayForm):
         user = pm.getMemberById(id)
         if user:
             return user
-        if 'collective.person.behaviors.user.IPloneUser' in fti.behaviors:
+        if 's17.person.behaviors.user.IPloneUser' in fti.behaviors:
             item = IPloneUser(context)
             user = pm.getMemberById(item.user_name)
         if user:
@@ -203,7 +203,7 @@ def notifyUser(employee, event):
     passwd = 'changeme123'
     fullname = employee.fullname
     email = u'changeme@changeme.com'
-    if 'collective.person.behaviors.contact.IContactInfo' in fti.behaviors:
+    if 's17.person.behaviors.contact.IContactInfo' in fti.behaviors:
         adapt_employee = IContactInfo(employee)
         emails = adapt_employee.emails
         if emails != []:

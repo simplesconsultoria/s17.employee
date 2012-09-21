@@ -23,7 +23,7 @@
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
      <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="collective.person.behaviors.contact.IContactInfo" />
+     <element value="s17.person.behaviors.contact.IContactInfo" />
   </property>
 
   <!-- View information -->

@@ -18,7 +18,7 @@ from plone.uuid.interfaces import IAttributeUUID
 
 from z3c.relationfield.relation import RelationValue
 
-from collective.person.behaviors.user import IPloneUser
+from s17.person.behaviors.user import IPloneUser
 
 from s17.employee.content.employee import IEmployee
 

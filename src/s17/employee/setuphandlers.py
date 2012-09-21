@@ -16,8 +16,8 @@ from Products.CMFCore.utils import getToolByName
 
 from Products.GenericSetup.upgrade import listUpgradeSteps
 
-from collective.person.behaviors.contact import IContactInfo
-from collective.person.behaviors.user import IPloneUser
+from s17.person.behaviors.contact import IContactInfo
+from s17.person.behaviors.user import IPloneUser
 
 
 _PROJECT = 's17.employee'
@@ -74,8 +74,8 @@ def demo_steps(context):
     fti = queryUtility(IDexterityFTI,
                         name='s17.employee')
     behaviors = fti.behaviors + \
-                tuple(['collective.person.behaviors.user.IPloneUser',
-                'collective.person.behaviors.contact.IContactInfo'])
+                tuple(['s17.person.behaviors.user.IPloneUser',
+                's17.person.behaviors.contact.IContactInfo'])
     fti.behaviors = tuple(behaviors)
 
     for user in list_users:

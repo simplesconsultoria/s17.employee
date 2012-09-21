@@ -10,8 +10,8 @@ Because you have to know where your towel is.
 
 - Removing fieldsets of collective.person behaviors. [aleGpereira]
 
-- Adding fields employee_id, charge, organizational unit, extension line, location
-  and reports_to employee. [aleGpereira]
+- Adding fields employee_id, charge, organizational unit, extension line,
+  location and reports_to employee. [aleGpereira]
 
 - Adding tests for base behaviors of dexterity. [aleGpereira]
 
@@ -23,9 +23,9 @@ Because you have to know where your towel is.
 
 - Restrict year of birthday to be more than 1900. [aleGpereira]
 
-- Update translations [aleGpereira]
+- Update translations. [aleGpereira]
 
-- New implementation of Employee view [davilima6]
+- New implementation of Employee view. [davilima6]
 
 
 1.0a5 (2012-08-07)
@@ -67,4 +67,3 @@ Because you have to know where your towel is.
 ^^^^^^^^^^^^^^^^^^
 
 - Initial release.
-
