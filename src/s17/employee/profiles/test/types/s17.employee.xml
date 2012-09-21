@@ -30,6 +30,7 @@
      <element value="s17.person.behaviors.user.IPloneUser" />
      <element value="plone.app.dexterity.behaviors.metadata.IPublication" />
      <element value="plone.app.dexterity.behaviors.metadata.IOwnership" />
+     <element value="s17.person.employee.behaviors.membercreation.IMemberCreation" />
   </property>
 
   <!-- View information -->

@@ -34,6 +34,15 @@ information with a picture.
 
 With this option you can have a quick view to see what this product offers.
 
+Behaviors
+^^^^^^^^^
+
+This package include a behavior called **Member creation** that enables
+the functionality to create a plone user member for an employee when is
+created.
+The default id is the same of the employee object and the *default password*
+of the plone user is *changeme123*.
+
 Mostly Harmless
 ---------------
 
