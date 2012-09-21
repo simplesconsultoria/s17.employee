@@ -1,7 +1,7 @@
 Share and Enjoy
 ---------------
 
-s17.person.employee would not have been possible without the contribution of
+s17.employee would not have been possible without the contribution of
 the following people:
 
 - Alejandro Pereira

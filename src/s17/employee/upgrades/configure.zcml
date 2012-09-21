@@ -3,16 +3,16 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="s17.person.employee">
+    i18n_domain="s17.employee">
 
     <!-- Upgrades-->
     <genericsetup:upgradeStep
-        title="Upgrade for s17.person.employee"
+        title="Upgrade for s17.employee"
         description="Initial install"
         source="0.0"
         destination="1000"
         sortkey="1"
-        handler="s17.person.employee.upgrades.to1000.fromZero"
-        profile="s17.person.employee:default" />
+        handler="s17.employee.upgrades.to1000.fromZero"
+        profile="s17.employee:default" />
 
 </configure>

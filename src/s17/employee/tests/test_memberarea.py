@@ -10,7 +10,7 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import setRoles
 from plone.app.testing import login
 
-from s17.person.employee.testing import INTEGRATION_TESTING
+from s17.employee.testing import INTEGRATION_TESTING
 
 
 class MemberAreaTest(unittest.TestCase):
@@ -20,7 +20,7 @@ class MemberAreaTest(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.membership = getToolByName(self.portal, 'portal_membership')
-        applyProfile(self.portal, 's17.person.employee:use_memberarea')
+        applyProfile(self.portal, 's17.employee:use_memberarea')
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         login(self.portal, TEST_USER_NAME)
 

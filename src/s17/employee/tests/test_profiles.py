@@ -7,7 +7,7 @@ from plone.app.testing import TEST_USER_NAME
 from plone.app.testing import login
 from plone.app.testing import setRoles
 
-from s17.person.employee.testing import INTEGRATION_TESTING
+from s17.employee.testing import INTEGRATION_TESTING
 
 
 class DemoTest(unittest.TestCase):

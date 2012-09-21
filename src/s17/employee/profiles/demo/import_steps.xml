@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <import-steps>
-    <import-step id="s17.person.employee-demo-steps" version="20120508-16"
-                 handler="s17.person.employee.setuphandlers.demo_steps"
-                 title="s17.person.employee: Demo steps">
+    <import-step id="s17.employee-demo-steps" version="20120508-16"
+                 handler="s17.employee.setuphandlers.demo_steps"
+                 title="s17.employee: Demo steps">
     </import-step>
-    Demo steps s17.person.employee
+    Demo steps s17.employee
 </import-steps>

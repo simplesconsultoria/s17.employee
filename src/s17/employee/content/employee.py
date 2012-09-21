@@ -20,7 +20,7 @@ from collective.person.behaviors.contact import IContactInfo
 from collective.person.content.person import IPerson
 from collective.person.content.person import Person
 
-from s17.person.employee import MessageFactory as _
+from s17.employee import MessageFactory as _
 
 
 fields = IPerson.names()

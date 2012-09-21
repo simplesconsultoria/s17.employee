@@ -14,24 +14,24 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         # Load ZCML
-        import s17.person.employee
-        self.loadZCML(package=s17.person.employee)
+        import s17.employee
+        self.loadZCML(package=s17.employee)
 
     def setUpPloneSite(self, portal):
         # Install into Plone site using portal_setup
         pw = getToolByName(portal, 'portal_workflow')
         pw.setDefaultChain('intranet_workflow')
-        self.applyProfile(portal, 's17.person.employee:default')
-        self.applyProfile(portal, 's17.person.employee:demo')
-        self.applyProfile(portal, 's17.person.employee:test')
+        self.applyProfile(portal, 's17.employee:default')
+        self.applyProfile(portal, 's17.employee:demo')
+        self.applyProfile(portal, 's17.employee:test')
 
 
 FIXTURE = Fixture()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
-    name='s17.person.employee:Integration',
+    name='s17.employee:Integration',
     )
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,),
-    name='s17.person.employee:Functional',
+    name='s17.employee:Functional',
     )

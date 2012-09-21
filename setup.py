@@ -11,7 +11,7 @@ long_description = open("README.txt").read() + "\n" + \
                    open(os.path.join("docs", "CREDITS.txt")).read() + "\n" + \
                    open(os.path.join("docs", "HISTORY.txt")).read()
 
-setup(name='s17.person.employee',
+setup(name='s17.employee',
       version=version,
       description=description,
       long_description=long_description,
@@ -39,7 +39,7 @@ setup(name='s17.person.employee',
       license='GPLv2',
       packages=find_packages('src'),
       package_dir={'': 'src'},
-      namespace_packages=['s17', 's17.person'],
+      namespace_packages=['s17'],
       include_package_data=True,
       zip_safe=False,
       install_requires=[

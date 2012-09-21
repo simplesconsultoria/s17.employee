@@ -20,14 +20,14 @@ from collective.person.behaviors.contact import IContactInfo
 from collective.person.behaviors.user import IPloneUser
 
 
-_PROJECT = 's17.person.employee'
-_PROFILE_ID = 's17.person.employee:default'
+_PROJECT = 's17.employee'
+_PROFILE_ID = 's17.employee:default'
 
 
 def run_upgrades(context):
     """ Run Upgrade steps.
     """
-    if context.readDataFile('s17.person.employee-default.txt') is None:
+    if context.readDataFile('s17.employee-default.txt') is None:
         return
     logger = logging.getLogger(_PROJECT)
     site = context.getSite()
@@ -49,7 +49,7 @@ def run_upgrades(context):
 def demo_steps(context):
     """ Run steps to prepare a demo.
     """
-    if context.readDataFile('s17.person.employee-demo.txt') is None:
+    if context.readDataFile('s17.employee-demo.txt') is None:
         return
     portal = context.getSite()
     portal.invokeFactory('Folder', 'employees')
@@ -136,7 +136,7 @@ def create_user(username, password, portal):
 
 
 def use_memberarea(context):
-    if context.readDataFile('s17.person.employee-use_memberarea.txt') is None:
+    if context.readDataFile('s17.employee-use_memberarea.txt') is None:
         return
     portal = context.getSite()
     mt = getToolByName(portal, 'portal_membership')

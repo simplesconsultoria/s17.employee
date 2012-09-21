@@ -1,6 +1,6 @@
-*******************
-s17.person.employee
-*******************
+************
+s17.employee
+************
 
 .. contents:: Table of Contents
 
@@ -23,9 +23,9 @@ The steps to activate this profile you must do:
 
     1. Go to the zmi -> portal_setup.
     2. Click on ''Import'' tab.
-    3. Select the profile ''s17.person.employee: Demo profile'' from the drop
+    3. Select the profile ''s17.employee: Demo profile'' from the drop
        down.
-    4. Check the step ''s17.person.employee: Demo steps'' and click the button
+    4. Check the step ''s17.employee: Demo steps'' and click the button
        ''import selected steps''.
 
 Once you done the process you can see in you site a folder called
@@ -37,11 +37,11 @@ With this option you can have a quick view to see what this product offers.
 Mostly Harmless
 ---------------
 
-.. image:: https://secure.travis-ci.org/simplesconsultoria/s17.person.employee.png
-    :target: http://travis-ci.org/simplesconsultoria/s17.person.employee
+.. image:: https://secure.travis-ci.org/simplesconsultoria/s17.employee.png
+    :target: http://travis-ci.org/simplesconsultoria/s17.employee
 
 Have an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`collective.person`: https://github.com/simplesconsultoria/collective.person
-.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.person.employee/issues
+.. _`opening a support ticket`: https://github.com/simplesconsultoria/s17.employee/issues
 

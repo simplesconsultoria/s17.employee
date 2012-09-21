@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <object name="s17.employee"
    meta_type="Dexterity FTI"
-   i18n:domain="s17.person.employee"
+   i18n:domain="s17.employee"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
   <property name="title" i18n:translate="">Employee</property>
   <property name="description" i18n:translate="">An employee</property>
-  <property name="content_icon">++resource++s17.person.employee/user.png</property>
+  <property name="content_icon">++resource++s17.employee/user.png</property>
   <property name="factory">s17.employee</property>
   <property name="global_allow">True</property>
   <property name="filter_content_types">False</property>
@@ -15,10 +15,10 @@
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">s17.person.employee.content.employee.IEmployee</property>
-  <property name="klass">s17.person.employee.content.employee.Employee</property>
+  <property name="schema">s17.employee.content.employee.IEmployee</property>
+  <property name="klass">s17.employee.content.employee.Employee</property>
 
-  <property name="add_permission">s17.person.employee.AddEmployee</property>
+  <property name="add_permission">s17.employee.AddEmployee</property>
 
   <property name="behaviors">
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
