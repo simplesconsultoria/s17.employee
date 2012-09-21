@@ -6,6 +6,9 @@ Because you have to know where your towel is.
 1.0a6 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Import IIntIds from zope.intid to avoid dependency on zope.app.intid.
+  [hvelarde]
+
 - Rename content type from "s17.employee" to "Employee". [hvelarde]
 
 - Rename package from s17.person.employee to s17.employee. [hvelarde]

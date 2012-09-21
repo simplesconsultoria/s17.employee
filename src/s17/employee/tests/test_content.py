@@ -4,7 +4,7 @@ import unittest2 as unittest
 
 from zope.component import createObject
 from zope.component import queryUtility, getUtility
-from zope.app.intid.interfaces import IIntIds
+from zope.intid.interfaces import IIntIds
 
 from Products.CMFCore.utils import getToolByName
 
