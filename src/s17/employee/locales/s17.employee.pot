@@ -89,3 +89,11 @@ msgstr ""
 msgid "Years of birthdays have to be greater than 1900."
 msgstr ""
 
+#: s17/employee/behaviors/configure.zcml:13
+msgid "Member creation"
+msgstr ""
+
+#: s17/employee/behaviors/configure.zcml:14
+msgid "Creates a plone member user for a employee when is created."
+msgstr ""
+
