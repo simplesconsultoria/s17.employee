@@ -1,31 +1,31 @@
 /* General */
 
-.portaltype-s17-employee #employee_title{
+.portaltype-employee #employee_title{
     font-size: 350%;
     margin-bottom: 10px;
 }
 
 /* Image */
-.portaltype-s17-employee #image{
+.portaltype-employee #image{
     float: right;
     width: 325px;
 }
 
 /* Content form */
 
-.portaltype-s17-employee #employee-main-info{
+.portaltype-employee #employee-main-info{
     float: left;
     width: 50%;
 }
 
-.portaltype-s17-employee table#employee-main-info tr.subsection td:first-child{
+.portaltype-employee table#employee-main-info tr.subsection td:first-child{
     width: 40%;
     text-align: left;
     vertical-align: text-top;
     font-weight: bold;
 }
 
-.portaltype-s17-employee table#employee-main-info tr.type_info h3{
+.portaltype-employee table#employee-main-info tr.type_info h3{
     margin-top: 10px;
     margin-bottom: 10px;
     border-bottom: 3px solid;
