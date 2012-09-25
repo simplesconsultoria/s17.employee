@@ -6,7 +6,10 @@ Because you have to know where your towel is.
 1.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
-- Nothing changed yet.
+- Add translation pt_BR and es for member creation behavior description.
+  [aleGpereira]
+
+- Fix css selectors. [aleGpereira]
 
 
 1.0b1 (2012-09-21)
