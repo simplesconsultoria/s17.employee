@@ -8,7 +8,8 @@
   <body>
 
     <metal:main fill-slot="main">
-      <tal:main-macro metal:define-macro="main">
+      <tal:main-macro metal:define-macro="main"
+          define="user_name python:view.w.get('IPloneUser.user_name').value">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
@@ -19,59 +20,73 @@
         <dl class="portalMessage info"
             tal:condition="not:view/check_member">
             <dt i18n:translate="">Information</dt>
-            <dd i18n:translate="">There is not a Plone user attached to this employee.</dd>
+            <dd i18n:translate="">There is no Plone user attached to employee <em><span tal:replace="user_name" i18n:name="username">username</span></em>.<br />Would you like to <a tal:attributes="href string:${view/portal_url}/@@new-user">create one now?</a></dd>
         </dl>
 
-        <h1 id="employee_title" class="documentFirstHeading">
+        <h1 id="employee-title" class="documentFirstHeading">
             <span tal:replace="context/title" />
-            <span
-                tal:define="user_name python:view.w.get('IPloneUser.user_name');
-                            user_name python:user_name and user_name.render().strip() or ''"
-                tal:condition="user_name"
-                tal:content="structure python:'(%s)' % user_name" />
+            <span tal:content="python:user_name and '(%s)' %user_name or ''" />
         </h1>
 
+        <tal:block define="picture nocall:context/picture">
+        <img class="image-right"
+            tal:condition="nocall:picture"
+            tal:attributes="src string:${context/absolute_url}/@@images/picture/thumb" />
+        <img class="image-right"
+            tal:attributes="src string:${view/portal_url}/defaultUser.png"
+            tal:condition="not:nocall:picture" />
+        </tal:block>
+
         <table id="employee-main-info"
-               tal:define="view_widget python:view.w;
+               tal:define="view_widget view/w;
                            base_keys view/base_sorted_keys;
                            contact_keys view/contact_sorted_keys;
                            companyinfo_keys view/companyinfo_sorted_keys">
 
-            <tr tal:condition="python:base_keys" class="subsection" tal:repeat="field base_keys">
+            <tr class="subsection"
+                tal:condition="base_keys"
+                tal:repeat="field base_keys">
                 <td tal:define="key python:field.keys()[0]"
                     tal:content="python:view_widget[key].label" />
-                <td tal:define="key python:field.keys()[0]" tal_attributes="id key"
-                    tal:content="structure python: view_widget[key].render()" />
+                <td tal:define="key python:field.keys()[0]"
+                    tal:attributes="id key"
+                    tal:content="structure python:view_widget[key].render()" />
             </tr>
-            <tr class="type_info">
-                <td colspan="2"><h3 i18n:translate=""> Contacts </h3></td>
+
+            <tal:block condition="contact_keys">
+            <tr class="type-info">
+                <td colspan="2"><h2 i18n:translate="">Contacts</h2></td>
             </tr>
-            <tr tal:condition="python:contact_keys" class="subsection" tal:repeat="field contact_keys">
+            <tr class="subsection" tal:repeat="field contact_keys">
                 <td tal:define="key python:field.keys()[0]"
                     tal:content="python:view_widget[key].label" />
-                <td tal:define="key python:field.keys()[0]" tal_attributes="id key">
-                    <div tal:repeat="item python:view_widget[key].value" >
-                        <span tal:content="python: item['data']" />
-                    </div>
+                <td tal:define="key python:field.keys()[0]"
+                    tal:attributes="id key">
+                    <tal:block repeat="item python:view_widget[key].value">
+                    <div tal:define="oddrow repeat/item/odd"
+                        tal:attributes="class python:oddrow and 'even' or 'odd'"
+                        tal:content="python:item['data']" />
+                    </tal:block>
                 </td>
             </tr>
+            </tal:block>
 
-            <tr class="type_info">
-                <td colspan="2"><h3 i18n:translate=""> Company Information </h3></td>
+            <tal:block condition="companyinfo_keys">
+            <tr class="type-info">
+                <td colspan="2">
+                    <h2 i18n:translate="">Corporate Information</h2>
+                </td>
             </tr>
-
-            <tr tal:condition="python:companyinfo_keys" class="subsection" tal:repeat="field companyinfo_keys">
+            <tr class="subsection"
+                tal:repeat="field companyinfo_keys">
                 <td tal:define="key python:field.keys()[0]"
                     tal:content="python:view_widget[key].label" />
-                <td tal:define="key python:field.keys()[0]" tal_attributes="id key"
-                    tal:content="structure python: view_widget[key].render()" />
+                <td tal:define="key python:field.keys()[0]"
+                    tal:attributes="id key"
+                    tal:content="structure python:view_widget[key].render()" />
             </tr>
+            </tal:block>
         </table>
-
-        <img id="image"
-              tal:attributes="src string:${context/absolute_url}/@@images/picture/"
-          />
-
 
         <div class="field person-biography" tal:condition="view/biography">
           <h3 i18n:translate="">Biography</h3>

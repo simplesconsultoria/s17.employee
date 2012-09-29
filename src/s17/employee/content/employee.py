@@ -31,47 +31,49 @@ class IEmployee(IPerson):
     employee_id = schema.Int(
         title=_(u"Registration number"),
         required=True,
-        )
+    )
 
     position = schema.TextLine(
         title=_(u"Position"),
         description=_(u"Position in the company."),
         required=False,
-        )
+    )
 
     ou = schema.TextLine(
         title=_(u"Organizational Unit"),
         description=_(u"To what unit this employee belong."),
         required=False,
-        )
+    )
 
     location = schema.TextLine(
         title=_(u"Location"),
         description=_(u"Information of room/desk."),
         required=False,
-        )
+    )
 
     extension = schema.Int(
         title=_(u"Extension line"),
         description=_(u"Internal extension line to contact this employee."),
         required=False,
-        )
+    )
 
     reports_to = RelationList(
         title=_(u'Boss', default=u'Boss'),
         default=[],
         value_type=RelationChoice(title=u"Boss",
-                      source=ObjPathSourceBinder(portal_type='Employee')),
+                                  source=ObjPathSourceBinder(
+                                      portal_type='Employee')),
         required=False,
-        )
+    )
 
     @invariant
     def restrict_year(data):
-        ''' Check year of birthday. '''
+        """ Check year of birthday
+        """
         birthday = data.birthday
         if birthday and birthday.year < 1901:
-            raise Invalid(_(u"Years of birthdays have to be greater" + \
-                                " than 1900."))
+            raise Invalid(_(u"Years of birthdays have to be greater" +
+                            " than 1900."))
 
 
 class Employee(Person):
@@ -80,7 +82,8 @@ class Employee(Person):
     grok.implements(IEmployee)
 
     def setTitle(self, value):
-        ''' Membership tool expects a setTitle '''
+        """ Membership tool expects a setTitle
+        """
         title = value.split(' ')
         given_name = surname = ''
         if len(title) == 2:
@@ -131,7 +134,7 @@ class View(dexterity.DisplayForm):
             return None
 
     def check_member(self):
-        """ Check if the employee is attached to a plone user.
+        """ Check if this employee has a corresponding Plone user.
         """
         context = self.context
         id = context.getId()
@@ -163,14 +166,14 @@ class View(dexterity.DisplayForm):
         employee = IContactInfo(employee)
         result = []
         if employee.emails:
-            result.append({'IContactInfo.emails': \
-                            employee.emails})
+            result.append({'IContactInfo.emails':
+                           employee.emails})
         if employee.instant_messengers:
-            result.append({'IContactInfo.instant_messengers': \
-                            employee.instant_messengers})
+            result.append({'IContactInfo.instant_messengers':
+                           employee.instant_messengers})
         if employee.telephones:
-            result.append({'IContactInfo.telephones': \
-                            employee.telephones})
+            result.append({'IContactInfo.telephones':
+                           employee.telephones})
         return result
 
     def companyinfo_sorted_keys(self):
@@ -186,3 +189,9 @@ class View(dexterity.DisplayForm):
             result.append({'location': employee.location})
 
         return result
+
+    def portal_url(self):
+        """ Return the portal url
+        """
+        portal_url = getToolByName(self.context, 'portal_url')
+        return portal_url()

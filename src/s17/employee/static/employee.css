@@ -1,41 +1,31 @@
 /* General */
 
-.portaltype-employee #employee_title{
-    font-size: 350%;
+#employee-title {
+    font-size: 3.5em;
     margin-bottom: 10px;
-}
-
-/* Image */
-.portaltype-employee #image{
-    float: right;
-    width: 325px;
 }
 
 /* Content form */
 
-.portaltype-employee #employee-main-info{
-    float: left;
-    width: 50%;
+#employee-main-info {
+    width: 70%;
 }
 
-.portaltype-employee table#employee-main-info tr.subsection td:first-child{
-    width: 40%;
+#employee-main-info .subsection td:first-child {
+    font-weight: bold;
     text-align: left;
     vertical-align: text-top;
-    font-weight: bold;
+    width: 40%;
 }
 
-.portaltype-employee table#employee-main-info tr.type_info h3{
-    margin-top: 10px;
+#employee-main-info .type-info h2 {
+    margin-top: 20px;
     margin-bottom: 10px;
     border-bottom: 3px solid;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
 }
 
-
-/* Content form -- Company informations */
-
-
-
-
+#employee-main-info .odd {
+    background: #eee;
+}
