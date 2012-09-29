@@ -4,6 +4,7 @@ from five import grok
 
 from zope import schema
 from zope.interface import Invalid, invariant
+from zope.site.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 
@@ -74,6 +75,18 @@ class IEmployee(IPerson):
         if birthday and birthday.year < 1901:
             raise Invalid(_(u"Years of birthdays have to be greater" +
                             " than 1900."))
+
+    # XXX: How can I get user_name from data?
+    # @invariant
+    # def restrict_username(data):
+    #     """ Check if username provided has a corresponding Plone user.
+    #     """
+    #     user_name = data.user_name
+    #     pm = getToolByName(getSite(), 'portal_membership')
+    #     user = pm.getMemberById(user_name)
+    #     if not user:
+    #         raise Invalid(_(u"There is no Plone user with the provided" +
+    #                         "username."))
 
 
 class Employee(Person):
