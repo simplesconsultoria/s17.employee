@@ -6,6 +6,8 @@ Because you have to know where your towel is.
 1.0b2 (unreleased)
 ^^^^^^^^^^^^^^^^^^
 
+- Improved default view for Employee. [davilima6]
+
 - Add translation pt_BR and es for member creation behavior description.
   [aleGpereira]
 
