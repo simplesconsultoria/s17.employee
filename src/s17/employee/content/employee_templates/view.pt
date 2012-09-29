@@ -9,7 +9,8 @@
 
     <metal:main fill-slot="main">
       <tal:main-macro metal:define-macro="main"
-          define="user_name python:view.w.get('IPloneUser.user_name').value">
+          define="user_name python:view.w.get('IPloneUser.user_name');
+                  user_name python:user_name and user_name.value or ''">
 
         <div tal:replace="structure provider:plone.abovecontenttitle" />
 
