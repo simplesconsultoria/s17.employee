@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <object name="portal_javascripts" meta_type="JavaScripts Registry">
- <javascript id="++resource++s17.employee/employee.css" remove="True" />
+ <javascript id="++resource++s17.employee/employee.js" remove="True" />
 </object>
