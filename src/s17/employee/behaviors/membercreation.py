@@ -50,6 +50,6 @@ def notifyUser(employee, event):
         'email': email,
     }
     try:
-        member = pr.addMember(e_id, passwd, properties=properties)
-    except ValueError, e:
+        pr.addMember(e_id, passwd, properties=properties)
+    except ValueError:
         return None

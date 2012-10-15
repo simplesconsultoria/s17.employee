@@ -4,7 +4,6 @@ from five import grok
 
 from zope import schema
 from zope.interface import Invalid, invariant
-from zope.site.hooks import getSite
 
 from Products.CMFCore.utils import getToolByName
 

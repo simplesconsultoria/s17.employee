@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import unittest2 as unittest
 
-from zope.site.hooks import setSite
-
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import setRoles
 
