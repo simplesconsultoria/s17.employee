@@ -34,6 +34,15 @@ information with a picture.
 
 With this option you can have a quick view to see what this product offers.
 
+User member area
+^^^^^^^^^^^^^^^^
+
+If you want to enable the member creation area, you need to just run the
+profile: profile-s17.employee:use_memberarea.
+
+The member area will be the type Employee that contains all the information
+about the user (employee).
+
 Behaviors
 ^^^^^^^^^
 
