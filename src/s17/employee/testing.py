@@ -6,6 +6,7 @@ from plone.app.testing import PloneSandboxLayer
 from plone.app.testing import PLONE_FIXTURE
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import FunctionalTesting
+from plone.testing.z2 import ZSERVER_FIXTURE
 
 
 class Fixture(PloneSandboxLayer):
@@ -30,8 +31,8 @@ FIXTURE = Fixture()
 INTEGRATION_TESTING = IntegrationTesting(
     bases=(FIXTURE,),
     name='s17.employee:Integration',
-    )
+)
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,),
+    bases=(FIXTURE, ZSERVER_FIXTURE,),
     name='s17.employee:Functional',
-    )
+)
