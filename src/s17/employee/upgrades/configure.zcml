@@ -15,4 +15,13 @@
         handler="s17.employee.upgrades.to1000.fromZero"
         profile="s17.employee:default" />
 
+    <genericsetup:upgradeStep
+        title="Upgrade for s17.employee"
+        description="reindex zc.relations catalog"
+        source="1000"
+        destination="1001"
+        sortkey="1"
+        handler="s17.employee.upgrades.to1001.reindex_zc_relations"
+        profile="s17.employee:default" />
+
 </configure>
