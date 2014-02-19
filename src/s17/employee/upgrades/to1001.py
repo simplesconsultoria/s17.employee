@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from plone.uuid.handlers import addAttributeUUID
-
 from zc.relation.interfaces import ICatalog
 from zope.component import getUtility
 from z3c.relationfield.event import updateRelations
