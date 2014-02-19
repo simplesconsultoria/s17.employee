@@ -45,6 +45,7 @@ setup(name='s17.employee',
       install_requires=[
           'setuptools',
           'plone.app.relationfield',
+          'plone.behavior',
           'Products.CMFPlone>=4.2',
           's17.person',
           'zc.relation',
