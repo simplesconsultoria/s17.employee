@@ -44,8 +44,10 @@ setup(name='s17.employee',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.app.relationfield',
           'Products.CMFPlone>=4.2',
           's17.person',
+          'zc.relation',
       ],
       extras_require={
           'test': [
